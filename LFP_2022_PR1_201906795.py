@@ -16,13 +16,11 @@ import tkinter as tk
 #──O────────────────O────────
 #INTERFACES GRAFICAS VENTANAS
 import LFP_VNT1_Inicio as VNT1
+import LFP_VNT2_Seleccionar_archivo as VNT2
 
 
 
 
-
-
-#————————————————————»✦«—————————————————————————————————————————————————#
 
 #————————————————————»✦«—————————————————————————————————————————————————#
 def Mensajeinicio():
@@ -32,9 +30,6 @@ def Mensajeinicio():
     print("║ JAVIER  RICARDO YLLESCAS BARRIOS ║")
     print("║ CARNE: 201906795                 ║")
     print("╚══════════════════════════════════╝")
-
-
-
 
 
 #█┼┼┼┼┼┼┼┼┼┼┼| MAIN |┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼█
