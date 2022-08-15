@@ -4,29 +4,45 @@
 import tkinter as tk
 #──O────────────────O────────
 #INTERFACES GRAFICAS VENTANAS
+import LFP_VNT0_Errores as VNT0
 
+#█┼┼┼┼┼┼┼┼┼┼┼[ VARIABLES GLOBALES ]┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼█
+#──O────────────────O───────────
+#Validador de ventanas repetidas
+global VNTAbierta
+VNTAbierta = False
+
+
+#————————————————————»✦«—————————————————————————————————————————————————#
 def test():
-    print("hola")
-
+    print("test")
+#————————————————————»✦«—————————————————————————————————————————————————#
 def Mostrar():
-    _nombre = "test1"
-    _apellido = "test2"
-    _edad = "test3"
-    _genero = "test4"
-    ventana = tk.Toplevel()
-    ventana.geometry('500x500')
-    tk.Label(ventana, text='INFORMACION DEL USUARIO1').place(x=50, y=275)
-    tk.Label(ventana, text='Mi nombre es').place(x=50, y=300)
-    tk.Label(ventana, textvariable=_nombre).place(x=150, y=300)
-    tk.Label(ventana, text='Mi Apellido es').place(x=50, y=325)
-    tk.Label(ventana, textvariable=_apellido).place(x=150, y=325)
-    tk.Label(ventana, text='Mi edad es').place(x=50, y=350)
-    tk.Label(ventana, textvariable=_edad).place(x=150, y=350)
-    tk.Label(ventana, text='Mi genero es').place(x=50, y=375)
-    tk.Label(ventana, textvariable=_genero).place(x=150, y=375)
-    tk.Button(ventana, text='CERRAR', command= lambda : T.dest(_ventana)).place(x=50, y=50)
-    ventana.mainloop()
+    #──O────────────────O────────────────────
+    #Declar variable global para poder usarla
+    global VNTAbierta
+    if (VNTAbierta == False):
+        #█═══════════════[ Ventana ] ═════════════════════════════════█
+        global ventana
+        ventana = tk.Toplevel()
+        ventana.geometry('500x500')
+        #──O────────────────O───
+        #Observador Boton Cerrar
+        ventana.protocol("WM_DELETE_WINDOW",Cerrar)
+        #█═══════════════[ Boton ] ═════════════════════════════════█
+        tk.Button(ventana, text='Test', command= lambda : test()).place(x=50, y=50)
+        #█═══════════════[ Validador ] ═════════════════════════════════█
+        VNTAbierta = True
+        #──O────────────────O───────
+        #Mantiene la ventana abierta
+        ventana.mainloop()
+    else:
+        VNT0.Mostrar("La ventana ya esta abierta.")
 
-def Cerrar(ventana):
+    
+#————————————————————»✦«—————————————————————————————————————————————————#
+def Cerrar():
+    global VNTAbierta
+    VNTAbierta = False
     ventana.destroy()
 
