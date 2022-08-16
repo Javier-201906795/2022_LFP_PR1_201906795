@@ -1,6 +1,7 @@
 import tkinter as tk
 
 import Test3 as f
+import Test as T1
 
 
 
@@ -33,6 +34,9 @@ if __name__ == '__main__':
     tk.Entry(ventana, textvariable=genero).place(x=150, y=125)
 
     tk.Button(ventana, text='Enviar', command= lambda : f.enviarInformacion(ventana, nombre, apellido, edad, genero)).place(x=300, y=125)
+
+    
+
 
     ventana.mainloop()
 

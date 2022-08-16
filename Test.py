@@ -1,6 +1,13 @@
 # IMPORTAR LA LIBRERIA
 import tkinter as tk
 
+
+
+
+
+
+
+
 def metodo1(ventana):
     tk.Label(ventana, text="Aparezco", font=("Arial Black", 16), fg="Blue").grid(row=0, column=0)
     ventananueva = tk.Toplevel(ventana)
