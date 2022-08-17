@@ -114,6 +114,7 @@ def Agregar():
             
     #──O────────────────O───────
     #Imprimir mensaje
+    VNT0.Mostrar(mensaje)
     print("--------------------------------------")
     if (len(mensaje) > 0):
         print("mensaje: ",mensaje)

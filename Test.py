@@ -1,45 +1,17 @@
-# IMPORTAR LA LIBRERIA
 import tkinter as tk
+#INTERFACES GRAFICAS VENTANAS
+import LFP_VNT0_Errores as VNT0
 
 
-
-
-
-
-
-
-def metodo1(ventana):
-    tk.Label(ventana, text="Aparezco", font=("Arial Black", 16), fg="Blue").grid(row=0, column=0)
-    ventananueva = tk.Toplevel(ventana)
-    ventananueva.geometry('1000x500')
-    # ventana2.mainloop()/
-
-# CREAR VENTANA
 ventana = tk.Tk()
+ventana.geometry('300x200')
+ventana.title('PRACTICA 1')
+#█═══════════════[ Textos ] ══════════════════════════════════█
+#mensaje = "fhoofkljdfkljdsaklfjdaklfj dfjdfkljsdklfjdl fdfjklsdafjkldafjkld f aaaaa  ffff  bbbb cc ccffffff"
+mensaje = "fhoofkljdfkljdsaklfjdaklfj dfjdfkljsdklfjdl fdfjklsdafjkldafjkld f aaaaa  ffff  bbbb cc ccffffff dfjfldjdklfjdklafl dfljdklfj dklf dfjdklfjklda d f lkjdkl fjda fsda fldsl fkd fsdkl fsdfjsdklfjkldfjkld lda fjkldafjskldaf a fhoofkljdfkljdsaklfjdaklfj dfjdfkljsdklfjdl fdfjklsdafjkldafjkld f aaaaa  ffff  bbbb cc ccffffff dfjfldjdklfjdklafl dfljdklfj dklf dfjdklfjklda d f lkjdkl fjda fsda fldsl fkd fsdkl fsdfjsdklfjkldfjkld lda fjkldafjskldaf a fhoofkljdfkljdsaklfjdaklfj dfjdfkljsdklfjdl fdfjklsdafjkldafjkld f aaaaa  ffff  bbbb cc ccffffff dfjfldjdklfjdklafl dfljdklfj dklf dfjdklfjklda d f lkjdkl fjda fsda fldsl fkd fsdkl fsdfjsdklfjkldfjkld lda fjkldafjskldaf a"
+tk.Button(ventana, text='Enviar', command= lambda : VNT0.Mostrar(mensaje)).place(x=10, y=125)
 
-
-# TITULO DE VENTANA
-ventana.title("Ejemplo Practico")
-
-# TAMAÑO DE VENTANA
-ventana.geometry('1000x500')
-
-# Etiquetas
-texto_mod = tk.StringVar()
-lbl1 = tk.Label(ventana, textvariable=texto_mod, font=("Arial Black", 16), fg="Blue")
-lbl1.place(x= 100 , y= 100)
-texto_mod.set("Saludo")
-
-lbl2 = tk.Label(ventana, text="Adios estudiantes de LFP B-")
-lbl2.grid(row=0, column=1)
-
-# Entradas
-texto_mod_entry1 = tk.StringVar()
-texto_mod_entry1.set("Hola")
-tk.Entry(ventana, textvariable=texto_mod_entry1, font=("Arial Black", 16)).place(x= 200 , y= 100)
-
-# Botones
-tk.Button(ventana, text="Enviar", font=("Arial Black", 16), command=lambda : metodo1(ventana)).place(x= 600 , y= 100)
-
-# ABRIR LA VENTA
 ventana.mainloop()
+
+
+
