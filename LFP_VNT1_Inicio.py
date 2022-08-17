@@ -6,12 +6,14 @@ from tkinter import filedialog
 #──O────────────────O────────
 #INTERFACES GRAFICAS VENTANAS
 import LFP_VNT0_Errores as VNT0
-import LFP_VNT2_Seleccionar_archivo as VNT2
+import LFP_VNT2_Gestionar_Cursos as VNT2
+
 
 #█┼┼┼┼┼┼┼┼┼┼┼[ VARIABLES GLOBLAES ]┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼█
 global Texto
 Texto = " "
 
+#█┼┼┼┼┼┼┼┼┼┼┼[ FUNCIONES  ]┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼█
 
 #————————————————————»✦«—————————————————————————————————————————————————#
 
@@ -29,7 +31,7 @@ def Mostrar(ventana):
     tk.Label(ventana, text='Carne del estudiante: 201906795').place(x=50, y=50)
     #█═══════════════[ Botones ] ══════════════════════════════════█
     tk.Button(ventana, text='Cargar Archivo', command= lambda : SeleccionarArchivo()).place(x=250, y=150)
-    tk.Button(ventana, text='Gestionar Cursos', command= lambda : test()).place(x=250, y=190)
+    tk.Button(ventana, text='Gestionar Cursos', command= lambda : VNT2.Mostrar()).place(x=250, y=190)
     tk.Button(ventana, text='Conteo de Creditos', command= lambda : test()).place(x=250, y=230)
     tk.Button(ventana, text='Salir', command= lambda : Cerrar(ventana)).place(x=250, y=270)
 
