@@ -18,6 +18,9 @@ VNTAbierta = False
 #————————————————————»✦«—————————————————————————————————————————————————#
 def test():
     print("test")
+    print(vcodigo.get())
+    if(vcodigo.get() == " " or vcodigo.get() == ""):
+        print("vacio")
 #————————————————————»✦«—————————————————————————————————————————————————#
 def Mostrar():
     #──O────────────────O────────────────────
@@ -56,7 +59,7 @@ def Mostrar():
         tk.Entry(ventana, textvariable=vcreditos).place(x=150, y=175)
         tk.Entry(ventana, textvariable=vestados).place(x=150, y=200)
         #█═══════════════[ Boton ] ═════════════════════════════════█
-        tk.Button(ventana, text='Agregar', command= lambda : test()).place(x=150, y=250)
+        tk.Button(ventana, text='Agregar', command= lambda : Agregar()).place(x=150, y=250)
         tk.Button(ventana, text='Regresar', command= lambda : Cerrar()).place(x=250, y=250)
         #█═══════════════[ Validador ] ═════════════════════════════════█
         VNTAbierta = True
@@ -72,3 +75,52 @@ def Cerrar():
     global VNTAbierta
     VNTAbierta = False
     ventana.destroy()
+#————————————————————»✦«—————————————————————————————————————————————————#
+def Agregar():
+    #█═══════════════[ Variables (Convertidas a Texto) ] ═════════════════════════════════█
+    global tcodigo, tnombre, tprerequisito, tsemestre, topcionalidad, tcreditos, testados
+    tcodigo = vcodigo.get()
+    tnombre = vnombre.get()
+    tprerequisito = vprerequisito.get()
+    tsemestre = vsemestre.get()
+    topcionalidad = vopcionalidad.get()
+    tcreditos = vcreditos.get()
+    testados = vestados.get()
+    #──O────────────────O───────
+    #Tabla para evaluar datos
+    ListaInputs = [tcodigo, tnombre,tprerequisito,tsemestre, topcionalidad, tcreditos, testados]
+    ListaInputsNombres = ["Codigo", "Nombre", "Pre requisito","Semestre","Opcionalidad", "Creditos", "Estados"]
+    #──O────────────────O───────
+    #Imprimir Tablas
+    print(ListaInputsNombres)
+    print(ListaInputs)
+    #█═══════════════[ Evaluar Espacios Vacios ] ═════════════════════════════════█
+    #──O────────────────O───────
+    #Ciclo for para evaluar
+    finfor = len(ListaInputs)
+    #──O────────────────O───────
+    #espacios vacios
+    global espaciosVacios, mensaje
+    espaciosVacios = False
+    validador = -1
+    mensaje = ""
+    for i in range(0,finfor):
+        if(ListaInputs[i] == "" or ListaInputs[i] == " " or ListaInputs[i] == "  "):
+            validador += 1
+            if validador == 0:
+                mensaje = "Porfavor llenar todos los espacios. Espacio vacio en "
+            mensaje += " " + str(ListaInputsNombres[i]) + ", "
+            espaciosVacios = True
+            
+    #──O────────────────O───────
+    #Imprimir mensaje
+    if (len(mensaje) > 0):
+        print("mensaje: ",mensaje)
+    print(espaciosVacios)
+
+    #█═══════════════[ Evaluar Inputs ] ═════════════════════════════════█
+
+    #█═══════════════[ Imprimir Inputs ] ═════════════════════════════════█
+    print("--------------------------------------")
+    
+    print("--------------------------------------")
