@@ -16,17 +16,17 @@ def Mostrar(mensaje):
     #──O────────────────O────────
     #Evalua si un texto largo y agrega saltos de linea
     if (len(mensaje) > 90 and len(mensaje) < 180):
-        _mensaje = mensaje[0:90] + '\n'
+        _mensaje = mensaje[0:90] + ' -\n'
         _mensaje += mensaje[90:len(mensaje)]
         print(_mensaje)
     elif (len(mensaje) > 180 and len(mensaje) < 270):
-        _mensaje = mensaje[0:90] + '\n'
-        _mensaje += mensaje[91:180] + '\n'
+        _mensaje = mensaje[0:90] + ' -\n'
+        _mensaje += mensaje[91:180] + ' -\n'
         _mensaje += mensaje[181:len(mensaje)] + '\n'
     elif (len(mensaje) > 270):
-        _mensaje = mensaje[0:90] + '\n'
-        _mensaje += mensaje[91:180] + '\n'
-        _mensaje += mensaje[181:270] + '\n'
+        _mensaje = mensaje[0:90] + ' -\n'
+        _mensaje += mensaje[91:180] + ' -\n'
+        _mensaje += mensaje[181:270] + ' -\n'
         _mensaje += mensaje[271:350] + '..... \n'
         
 
