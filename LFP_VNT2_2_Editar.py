@@ -22,7 +22,8 @@ def test():
     if(vcodigo.get() == " " or vcodigo.get() == ""):
         print("vacio")
 #————————————————————»✦«—————————————————————————————————————————————————#
-def Mostrar():
+def Mostrar(_codigo):
+    print("CODIGO A EDITAR: ",_codigo)
     #──O────────────────O────────────────────
     #Declar variable global para poder usarla
     global VNTAbierta
@@ -54,13 +55,13 @@ def Mostrar():
         vestados = tk.StringVar()
         #──O────────────────O───
         #Colocar valores (Texto)
-        vcodigo.set("001")
-        vnombre.set("ejemplo")
-        vprerequisito.set("ejemplo")
-        vsemestre.set("ejemplo")
-        vopcionalidad.set("ejemplo")
-        vcreditos.set("ejemplo")
-        vestados.set("ejemplo")
+        vcodigo.set(_codigo)
+        vnombre.set("Ejemplo")
+        vprerequisito.set("Ejemplo")
+        vsemestre.set("Ejemplo")
+        vopcionalidad.set("Ejemplo")
+        vcreditos.set("Ejemplo")
+        vestados.set("Ejemplo")
         #──O────────────────O───
         global entrycodigo
         entrycodigo = tk.Entry(ventana, textvariable=vcodigo).place(x=150, y=50)

@@ -6,7 +6,6 @@ from tkinter import filedialog
 #──O────────────────O────────
 #INTERFACES GRAFICAS VENTANAS
 import LFP_VNT0_Errores as VNT0
-import LFP_VNT2_2_Editar as VNT2_2
 import LFP_VNT2_3_Agregar as VNT2_3
 import LFP_VNT2_9_Buscar as VNT9
 

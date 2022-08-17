@@ -6,6 +6,7 @@ from tkinter import filedialog
 #──O────────────────O────────
 #INTERFACES GRAFICAS VENTANAS
 import LFP_VNT0_Errores as VNT0
+import LFP_VNT2_2_Editar as VNT2_2
 
 #█┼┼┼┼┼┼┼┼┼┼┼[ VARIABLES GLOBALES ]┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼█
 #──O────────────────O───────────
@@ -60,6 +61,7 @@ def Mostrar(_Accion):
     
 #————————————————————»✦«—————————————————————————————————————————————————#
 def Cerrar():
+    print("cerrar ventan buscar")
     global VNTAbierta
     VNTAbierta = False
     ventana.destroy()
@@ -136,9 +138,15 @@ def Buscar():
             mensajeerror = "Error: Porfavor ingrese un codigo valido. (3 digitos) (Positivo)"
             VNT0.Mostrar(mensajeerror)
 
+    #█═══════════════[ Buscar Curso ] ═════════════════════════════════█
+    global cursoexiste
+    cursoexiste = False
+    print("buscando curso ", codigocurso)
+    cursoexiste = True
+
     #█═══════════════[ Ejecutar Accion ] ═════════════════════════════════█
     #print("Accion", Accion)
-    if (espaciosVacios == False and codigocorrecto == True):
+    if (espaciosVacios == False and codigocorrecto == True and cursoexiste == True):
         if (Accion == "EDITAR"):
             AccEditar(codigocurso)
         elif (Accion == "ELIMINAR"):
@@ -150,6 +158,10 @@ def Buscar():
 #————————————————————»✦«—————————————————————————————————————————————————#
 def AccEditar(codigo):
     print("Editando ", codigo)
+    #──O────────────────O───────
+    #Abrir ventana y pasar codigo de busquedad
+    VNT2_2.Mostrar(codigo)
+    
 
 #————————————————————»✦«—————————————————————————————————————————————————#
 def AccEliminar(codigo):
