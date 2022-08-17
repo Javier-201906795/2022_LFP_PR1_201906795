@@ -6,7 +6,6 @@ from tkinter import filedialog
 #──O────────────────O────────
 #INTERFACES GRAFICAS VENTANAS
 import LFP_VNT0_Errores as VNT0
-import LFP_VNT2_2_Editar as VNT2_1
 
 #█┼┼┼┼┼┼┼┼┼┼┼[ VARIABLES GLOBALES ]┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼█
 #──O────────────────O───────────
@@ -28,16 +27,37 @@ def Mostrar():
         #█═══════════════[ Ventana ] ═════════════════════════════════█
         global ventana
         ventana = tk.Toplevel()
-        ventana.geometry('300x250')
+        ventana.geometry('380x340')
         #──O────────────────O───
         #Observador Boton Cerrar
         ventana.protocol("WM_DELETE_WINDOW",Cerrar)
+        #█═══════════════[ Texto ] ═════════════════════════════════█
+        tk.Label(ventana, text='Codigo: ').place(x=50, y=50)
+        tk.Label(ventana, text='Nombre: ').place(x=50, y=75)
+        tk.Label(ventana, text='Pre Requisito: ').place(x=50, y=100)
+        tk.Label(ventana, text='Semestre: ').place(x=50, y=125)
+        tk.Label(ventana, text='Opcionalidad: ').place(x=50, y=150)
+        tk.Label(ventana, text='Creditos: ').place(x=50, y=175)
+        tk.Label(ventana, text='Estados: ').place(x=50, y=200)
+        #█═══════════════[ Input ] ═════════════════════════════════█
+        global vcodigo, vnombre, vprerequisito, vsemestre,vopcionalidad, vcreditos, vestados
+        vcodigo = tk.StringVar()
+        vnombre = tk.StringVar()
+        vprerequisito = tk.StringVar()
+        vsemestre = tk.StringVar()
+        vopcionalidad = tk.StringVar()
+        vcreditos = tk.StringVar()
+        vestados = tk.StringVar()
+        tk.Entry(ventana, textvariable=vcodigo).place(x=150, y=50)
+        tk.Entry(ventana, textvariable=vnombre).place(x=150, y=75)
+        tk.Entry(ventana, textvariable=vprerequisito).place(x=150, y=100)
+        tk.Entry(ventana, textvariable=vsemestre).place(x=150, y=125)
+        tk.Entry(ventana, textvariable=vopcionalidad).place(x=150, y=150)
+        tk.Entry(ventana, textvariable=vcreditos).place(x=150, y=175)
+        tk.Entry(ventana, textvariable=vestados).place(x=150, y=200)
         #█═══════════════[ Boton ] ═════════════════════════════════█
-        tk.Button(ventana, text='Listar Cursos', command= lambda : test()).place(x=100, y=30)
-        tk.Button(ventana, text='Agregar Curso', command= lambda : VNT2_1.Mostrar()).place(x=100, y=70)
-        tk.Button(ventana, text='Editar Curso', command= lambda : test()).place(x=100, y=110)
-        tk.Button(ventana, text='Eliminar Curso', command= lambda : test()).place(x=100, y=150)
-        tk.Button(ventana, text='Regresar', command= lambda : Cerrar()).place(x=100, y=190)
+        tk.Button(ventana, text='Agregar', command= lambda : test()).place(x=150, y=250)
+        tk.Button(ventana, text='Regresar', command= lambda : Cerrar()).place(x=250, y=250)
         #█═══════════════[ Validador ] ═════════════════════════════════█
         VNTAbierta = True
         #──O────────────────O───────
