@@ -115,12 +115,13 @@ def Agregar():
             
     #──O────────────────O───────
     #Imprimir mensaje
-    VNT0.Mostrar(mensaje)
-    # print("--------------------------------------")
-    # if (len(mensaje) > 0):
-    #     print("mensaje: ",mensaje)
-    # print(espaciosVacios)
-    # print("--------------------------------------")
+    
+    print("--------------------------------------")
+    if (len(mensaje) > 0):
+        print("mensaje: ",mensaje)
+        VNT0.Mostrar(mensaje)
+    print(espaciosVacios)
+    print("--------------------------------------")
 
     #█═══════════════[ Evaluar Inputs ] ═════════════════════════════════█
 

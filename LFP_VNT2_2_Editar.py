@@ -31,7 +31,7 @@ def Mostrar():
         global ventana
         ventana = tk.Toplevel()
         ventana.geometry('380x340')
-        ventana.title('Editar')
+        ventana.title('Editar etes')
         #──O────────────────O───
         #Observador Boton Cerrar
         ventana.protocol("WM_DELETE_WINDOW",Cerrar)
@@ -45,14 +45,25 @@ def Mostrar():
         tk.Label(ventana, text='Estados: ').place(x=50, y=200)
         #█═══════════════[ Input ] ═════════════════════════════════█
         global vcodigo, vnombre, vprerequisito, vsemestre,vopcionalidad, vcreditos, vestados
-        vcodigo = "001"
-        vnombre = "Juan"
-        vprerequisito = "Ninguno"
-        vsemestre = "1"
-        vopcionalidad = "2"
-        vcreditos = "33"
-        vestados = "1"
-        tk.Entry(ventana, textvariable=vcodigo).place(x=150, y=50)
+        vcodigo = tk.StringVar()
+        vnombre = tk.StringVar()
+        vprerequisito = tk.StringVar()
+        vsemestre = tk.StringVar()
+        vopcionalidad = tk.StringVar()
+        vcreditos = tk.StringVar()
+        vestados = tk.StringVar()
+        #──O────────────────O───
+        #Colocar valores (Texto)
+        vcodigo.set("001")
+        vnombre.set("ejemplo")
+        vprerequisito.set("ejemplo")
+        vsemestre.set("ejemplo")
+        vopcionalidad.set("ejemplo")
+        vcreditos.set("ejemplo")
+        vestados.set("ejemplo")
+        #──O────────────────O───
+        global entrycodigo
+        entrycodigo = tk.Entry(ventana, textvariable=vcodigo).place(x=150, y=50)
         tk.Entry(ventana, textvariable=vnombre).place(x=150, y=75)
         tk.Entry(ventana, textvariable=vprerequisito).place(x=150, y=100)
         tk.Entry(ventana, textvariable=vsemestre).place(x=150, y=125)
@@ -60,7 +71,7 @@ def Mostrar():
         tk.Entry(ventana, textvariable=vcreditos).place(x=150, y=175)
         tk.Entry(ventana, textvariable=vestados).place(x=150, y=200)
         #█═══════════════[ Boton ] ═════════════════════════════════█
-        tk.Button(ventana, text='Agregar', command= lambda : Agregar()).place(x=150, y=250)
+        tk.Button(ventana, text='Editar', command= lambda : Editar()).place(x=150, y=250)
         tk.Button(ventana, text='Regresar', command= lambda : Cerrar()).place(x=250, y=250)
         #█═══════════════[ Validador ] ═════════════════════════════════█
         VNTAbierta = True
@@ -77,7 +88,7 @@ def Cerrar():
     VNTAbierta = False
     ventana.destroy()
 #————————————————————»✦«—————————————————————————————————————————————————#
-def Agregar():
+def Editar():
     #█═══════════════[ Variables (Convertidas a Texto) ] ═════════════════════════════════█
     global tcodigo, tnombre, tprerequisito, tsemestre, topcionalidad, tcreditos, testados
     tcodigo = vcodigo.get()
@@ -91,10 +102,7 @@ def Agregar():
     #Tabla para evaluar datos
     ListaInputs = [tcodigo, tnombre,tprerequisito,tsemestre, topcionalidad, tcreditos, testados]
     ListaInputsNombres = ["Codigo", "Nombre", "Pre requisito","Semestre","Opcionalidad", "Creditos", "Estados"]
-    #──O────────────────O───────
-    #Imprimir Tablas
-    print(ListaInputsNombres)
-    print(ListaInputs)
+    
     #█═══════════════[ Evaluar Espacios Vacios ] ═════════════════════════════════█
     #──O────────────────O───────
     #Ciclo for para evaluar
@@ -115,12 +123,16 @@ def Agregar():
             
     #──O────────────────O───────
     #Imprimir mensaje
-    VNT0.Mostrar(mensaje)
-    print("--------------------------------------")
     if (len(mensaje) > 0):
-        print("mensaje: ",mensaje)
-    print(espaciosVacios)
-    print("--------------------------------------")
+        # print("mensaje: ",mensaje)
+        VNT0.Mostrar(mensaje)
+    else: 
+        #──O────────────────O───────
+        #Imprimir Tablas
+        print(ListaInputsNombres)
+        print(ListaInputs)
+    # print(espaciosVacios)
+    
 
     #█═══════════════[ Evaluar Inputs ] ═════════════════════════════════█
 
