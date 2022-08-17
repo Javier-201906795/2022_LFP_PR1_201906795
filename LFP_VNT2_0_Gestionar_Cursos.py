@@ -6,7 +6,8 @@ from tkinter import filedialog
 #──O────────────────O────────
 #INTERFACES GRAFICAS VENTANAS
 import LFP_VNT0_Errores as VNT0
-import LFP_VNT2_2_Editar as VNT2_1
+import LFP_VNT2_2_Editar as VNT2_2
+import LFP_VNT2_3_Agregar as VNT2_3
 
 #█┼┼┼┼┼┼┼┼┼┼┼[ VARIABLES GLOBALES ]┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼█
 #──O────────────────O───────────
@@ -34,8 +35,8 @@ def Mostrar():
         ventana.protocol("WM_DELETE_WINDOW",Cerrar)
         #█═══════════════[ Boton ] ═════════════════════════════════█
         tk.Button(ventana, text='Listar Cursos', command= lambda : test()).place(x=100, y=30)
-        tk.Button(ventana, text='Agregar Curso', command= lambda : VNT2_1.Mostrar()).place(x=100, y=70)
-        tk.Button(ventana, text='Editar Curso', command= lambda : test()).place(x=100, y=110)
+        tk.Button(ventana, text='Agregar Curso', command= lambda : VNT2_3.Mostrar()).place(x=100, y=70)
+        tk.Button(ventana, text='Editar Curso', command= lambda : VNT2_2.Mostrar()).place(x=100, y=110)
         tk.Button(ventana, text='Eliminar Curso', command= lambda : test()).place(x=100, y=150)
         tk.Button(ventana, text='Regresar', command= lambda : Cerrar()).place(x=100, y=190)
         #█═══════════════[ Validador ] ═════════════════════════════════█

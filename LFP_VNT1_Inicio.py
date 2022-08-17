@@ -9,6 +9,7 @@ import LFP_VNT0_Errores as VNT0
 import LFP_VNT2_0_Gestionar_Cursos as VNT2
 
 
+
 #█┼┼┼┼┼┼┼┼┼┼┼[ VARIABLES GLOBLAES ]┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼█
 global Texto
 Texto = " "

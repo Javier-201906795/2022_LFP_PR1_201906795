@@ -31,7 +31,7 @@ def Mostrar():
         global ventana
         ventana = tk.Toplevel()
         ventana.geometry('380x340')
-        ventana.title('Editar')
+        ventana.title('Agregar')
         #──O────────────────O───
         #Observador Boton Cerrar
         ventana.protocol("WM_DELETE_WINDOW",Cerrar)
@@ -45,13 +45,13 @@ def Mostrar():
         tk.Label(ventana, text='Estados: ').place(x=50, y=200)
         #█═══════════════[ Input ] ═════════════════════════════════█
         global vcodigo, vnombre, vprerequisito, vsemestre,vopcionalidad, vcreditos, vestados
-        vcodigo = "001"
-        vnombre = "Juan"
-        vprerequisito = "Ninguno"
-        vsemestre = "1"
-        vopcionalidad = "2"
-        vcreditos = "33"
-        vestados = "1"
+        vcodigo = tk.StringVar()
+        vnombre = tk.StringVar()
+        vprerequisito = tk.StringVar()
+        vsemestre = tk.StringVar()
+        vopcionalidad = tk.StringVar()
+        vcreditos = tk.StringVar()
+        vestados = tk.StringVar()
         tk.Entry(ventana, textvariable=vcodigo).place(x=150, y=50)
         tk.Entry(ventana, textvariable=vnombre).place(x=150, y=75)
         tk.Entry(ventana, textvariable=vprerequisito).place(x=150, y=100)
@@ -93,8 +93,8 @@ def Agregar():
     ListaInputsNombres = ["Codigo", "Nombre", "Pre requisito","Semestre","Opcionalidad", "Creditos", "Estados"]
     #──O────────────────O───────
     #Imprimir Tablas
-    print(ListaInputsNombres)
-    print(ListaInputs)
+    #print(ListaInputsNombres)
+    #print(ListaInputs)
     #█═══════════════[ Evaluar Espacios Vacios ] ═════════════════════════════════█
     #──O────────────────O───────
     #Ciclo for para evaluar
@@ -116,11 +116,11 @@ def Agregar():
     #──O────────────────O───────
     #Imprimir mensaje
     VNT0.Mostrar(mensaje)
-    print("--------------------------------------")
-    if (len(mensaje) > 0):
-        print("mensaje: ",mensaje)
-    print(espaciosVacios)
-    print("--------------------------------------")
+    # print("--------------------------------------")
+    # if (len(mensaje) > 0):
+    #     print("mensaje: ",mensaje)
+    # print(espaciosVacios)
+    # print("--------------------------------------")
 
     #█═══════════════[ Evaluar Inputs ] ═════════════════════════════════█
 

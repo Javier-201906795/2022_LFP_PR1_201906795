@@ -18,7 +18,6 @@ def Mostrar(mensaje):
     if (len(mensaje) > 90 and len(mensaje) < 180):
         _mensaje = mensaje[0:90] + ' -\n'
         _mensaje += mensaje[90:len(mensaje)]
-        print(_mensaje)
     elif (len(mensaje) > 180 and len(mensaje) < 270):
         _mensaje = mensaje[0:90] + ' -\n'
         _mensaje += mensaje[91:180] + ' -\n'
