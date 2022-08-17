@@ -106,11 +106,16 @@ def Agregar():
     validador = -1
     mensaje = ""
     for i in range(0,finfor):
+        #Evalua
         if(ListaInputs[i] == "" or ListaInputs[i] == " " or ListaInputs[i] == "  "):
+            #si hay espacio vacios
             validador += 1
+            #Mensaje activacion 
             if validador == 0:
                 mensaje = "Porfavor llenar todos los espacios. Espacio vacio en "
-            mensaje += " " + str(ListaInputsNombres[i]) + ", "
+            #valores vacios
+            mensaje += " " + str(ListaInputsNombres[i]) + " "
+            #validador
             espaciosVacios = True
             
     #──O────────────────O───────
