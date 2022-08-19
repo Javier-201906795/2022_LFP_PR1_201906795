@@ -7,7 +7,7 @@ from tkinter import filedialog
 #INTERFACES GRAFICAS VENTANAS
 import LFP_VNT0_Errores as VNT0
 import LFP_VNT2_0_Gestionar_Cursos as VNT2
-
+import LFP_VNT3_0_Conteo_Creditos as VTN3
 
 
 #█┼┼┼┼┼┼┼┼┼┼┼[ VARIABLES GLOBLAES ]┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼█
@@ -33,7 +33,7 @@ def Mostrar(ventana):
     #█═══════════════[ Botones ] ══════════════════════════════════█
     tk.Button(ventana, text='Cargar Archivo', command= lambda : SeleccionarArchivo()).place(x=250, y=150)
     tk.Button(ventana, text='Gestionar Cursos', command= lambda : VNT2.Mostrar()).place(x=250, y=190)
-    tk.Button(ventana, text='Conteo de Creditos', command= lambda : test()).place(x=250, y=230)
+    tk.Button(ventana, text='Conteo de Creditos', command= lambda : VTN3.Mostrar()).place(x=250, y=230)
     tk.Button(ventana, text='Salir', command= lambda : Cerrar(ventana)).place(x=250, y=270)
 
 #————————————————————»✦«—————————————————————————————————————————————————#

@@ -9,6 +9,8 @@ import LFP_VNT0_Errores as VNT0
 import LFP_VNT2_3_Agregar as VNT2_3
 import LFP_VNT2_9_Buscar as VNT9
 
+
+
 #█┼┼┼┼┼┼┼┼┼┼┼[ VARIABLES GLOBALES ]┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼█
 #──O────────────────O───────────
 #Validador de ventanas repetidas

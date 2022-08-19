@@ -18,62 +18,55 @@ VNTAbierta = False
 #————————————————————»✦«—————————————————————————————————————————————————#
 def test():
     print("test")
-    print(vcodigo.get())
-    if(vcodigo.get() == " " or vcodigo.get() == ""):
-        print("vacio")
+    
 #————————————————————»✦«—————————————————————————————————————————————————#
-def Mostrar(_codigo):
-    print("CODIGO A EDITAR: ",_codigo)
+def Mostrar():
     #──O────────────────O────────────────────
-    #Declar variable global para poder usarla
+    #Variable para verficar si esta abierta la ventana
     global VNTAbierta
     if (VNTAbierta == False):
         #█═══════════════[ Ventana ] ═════════════════════════════════█
         global ventana
         ventana = tk.Toplevel()
-        ventana.geometry('380x340')
-        ventana.title('Editar etes')
+        ventana.geometry('450x550')
+        ventana.title('Contero de Creditos')
         #──O────────────────O───
         #Observador Boton Cerrar
         ventana.protocol("WM_DELETE_WINDOW",Cerrar)
         #█═══════════════[ Texto ] ═════════════════════════════════█
-        tk.Label(ventana, text='Codigo: ').place(x=50, y=50)
-        tk.Label(ventana, text='Nombre: ').place(x=50, y=75)
-        tk.Label(ventana, text='Pre Requisito: ').place(x=50, y=100)
-        tk.Label(ventana, text='Semestre: ').place(x=50, y=125)
-        tk.Label(ventana, text='Opcionalidad: ').place(x=50, y=150)
-        tk.Label(ventana, text='Creditos: ').place(x=50, y=175)
-        tk.Label(ventana, text='Estados: ').place(x=50, y=200)
+        #──O────────────────O───
+        #Variables
+        global creditosaprobados, creditoscursando, creditospendientes, creditosobligatorios, creditossemestre
+        creditosaprobados = -1
+        creditoscursando = -2
+        creditospendientes = -3
+        
+        creditosobligatorios = -1
+        creditossemestre = -1
+
+
+        tk.Label(ventana, text='Creditos Aprobados: ' + str(creditosaprobados)).place(x=20, y=20)
+        tk.Label(ventana, text='Creditos Cursando: ' + str(creditoscursando)).place(x=20, y=70)
+        tk.Label(ventana, text='Creditos Pendientes: ' + str(creditospendientes)).place(x=20, y=140)
+        tk.Label(ventana, text='Creditos Obligatorios hasta el semestre N: ').place(x=20, y=210)
+        tk.Label(ventana, text='Semestre: ').place(x=20, y=280)
+        tk.Label(ventana, text='Creditos del Semestre: ').place(x=20, y=340)
+        tk.Label(ventana, text='Semestre: ').place(x=20, y=410)
         #█═══════════════[ Input ] ═════════════════════════════════█
-        global vcodigo, vnombre, vprerequisito, vsemestre,vopcionalidad, vcreditos, vestados
-        vcodigo = tk.StringVar()
-        vnombre = tk.StringVar()
-        vprerequisito = tk.StringVar()
-        vsemestre = tk.StringVar()
-        vopcionalidad = tk.StringVar()
-        vcreditos = tk.StringVar()
-        vestados = tk.StringVar()
+        global vsemestre1, vsemestre2, nosemestre1, nosemestre2
+        vsemestre1 = tk.StringVar()
+        vsemestre2 = tk.StringVar()
+        nosemestre1 = tk.StringVar()
+        nosemestre2 = tk.StringVar()
         #──O────────────────O───
-        #Colocar valores (Texto)
-        vcodigo.set(_codigo)
-        vnombre.set("Ejemplo")
-        vprerequisito.set("Ejemplo")
-        vsemestre.set("Ejemplo")
-        vopcionalidad.set("Ejemplo")
-        vcreditos.set("Ejemplo")
-        vestados.set("Ejemplo")
-        #──O────────────────O───
-        global entrycodigo
-        entrycodigo = tk.Entry(ventana, textvariable=vcodigo).place(x=150, y=50)
-        tk.Entry(ventana, textvariable=vnombre).place(x=150, y=75)
-        tk.Entry(ventana, textvariable=vprerequisito).place(x=150, y=100)
-        tk.Entry(ventana, textvariable=vsemestre).place(x=150, y=125)
-        tk.Entry(ventana, textvariable=vopcionalidad).place(x=150, y=150)
-        tk.Entry(ventana, textvariable=vcreditos).place(x=150, y=175)
-        tk.Entry(ventana, textvariable=vestados).place(x=150, y=200)
+        tk.Entry(ventana, textvariable=vsemestre1).place(x=250, y=210)
+        tk.Entry(ventana, textvariable=nosemestre1).place(x=80, y=280)
+        tk.Entry(ventana, textvariable=vsemestre2).place(x=150, y=340)
+        tk.Entry(ventana, textvariable=nosemestre2).place(x=80, y=410)
         #█═══════════════[ Boton ] ═════════════════════════════════█
-        tk.Button(ventana, text='Editar', command= lambda : Editar()).place(x=150, y=250)
-        tk.Button(ventana, text='Regresar', command= lambda : Cerrar()).place(x=250, y=250)
+        tk.Button(ventana, text='Contar', command= lambda : conteocreditosobligatorios()).place(x=210, y=275)
+        tk.Button(ventana, text='Contar', command= lambda : conteocreditossemestre()).place(x=210, y=405)
+        tk.Button(ventana, text='Regresar', command= lambda : Cerrar()).place(x=360, y=480)
         #█═══════════════[ Validador ] ═════════════════════════════════█
         VNTAbierta = True
         #──O────────────────O───────
@@ -89,60 +82,45 @@ def Cerrar():
     VNTAbierta = False
     ventana.destroy()
 #————————————————————»✦«—————————————————————————————————————————————————#
-def Editar():
-    #█═══════════════[ Variables (Convertidas a Texto) ] ═════════════════════════════════█
-    global tcodigo, tnombre, tprerequisito, tsemestre, topcionalidad, tcreditos, testados
-    tcodigo = vcodigo.get()
-    tnombre = vnombre.get()
-    tprerequisito = vprerequisito.get()
-    tsemestre = vsemestre.get()
-    topcionalidad = vopcionalidad.get()
-    tcreditos = vcreditos.get()
-    testados = vestados.get()
-    #──O────────────────O───────
-    #Tabla para evaluar datos
-    ListaInputs = [tcodigo, tnombre,tprerequisito,tsemestre, topcionalidad, tcreditos, testados]
-    ListaInputsNombres = ["Codigo", "Nombre", "Pre requisito","Semestre","Opcionalidad", "Creditos", "Estados"]
-    
-    #█═══════════════[ Evaluar Espacios Vacios ] ═════════════════════════════════█
-    #──O────────────────O───────
-    #Ciclo for para evaluar
-    finfor = len(ListaInputs)
-    #──O────────────────O───────
-    #espacios vacios
-    global espaciosVacios, mensaje
-    espaciosVacios = False
-    validador = -1
-    mensaje = ""
-    for i in range(0,finfor):
-        #Evalua
-        if(ListaInputs[i] == "" or ListaInputs[i] == " " or ListaInputs[i] == "  "):
-            #si hay espacio vacios
-            validador += 1
-            #Mensaje activacion 
-            if validador == 0:
-                mensaje = "Porfavor llenar todos los espacios. Espacio vacio en "
-            #valores vacios
-            mensaje += " " + str(ListaInputsNombres[i]) + " "
-            #validador
-            espaciosVacios = True
-            
-    #──O────────────────O───────
-    #Imprimir mensaje
-    if (len(mensaje) > 0):
-        # print("mensaje: ",mensaje)
-        VNT0.Mostrar(mensaje)
-    else: 
+def validadoresinputs(semestre1, semestre2, tipo):
+    try:
         #──O────────────────O───────
-        #Imprimir Tablas
-        print(ListaInputsNombres)
-        print(ListaInputs)
-    # print(espaciosVacios)
-    
+        #Validador
+        semestreinicio = int(semestre1)
+        semestrefin = int(semestre2)
+        return True
 
-    #█═══════════════[ Evaluar Inputs ] ═════════════════════════════════█
+    except Exception as e:
+        mensajeerror = "Porfavor ingrese valores numericos en " + tipo
+        VNT0.Mostrar(mensajeerror)
+        #──O────────────────O───────
+        #Validador
+        return False
+        
+#————————————————————»✦«—————————————————————————————————————————————————#
+def conteocreditosobligatorios():
+    #█═══════════════[ Obtner inputs ] ═════════════════════════════════█
+    semestreinicio = vsemestre1.get()
+    semestrefin = nosemestre1.get()
+    #█═══════════════[ Validar inputs ] ═════════════════════════════════█
+    #──O────────────────O───────
+    valornumerico = validadoresinputs(semestreinicio,semestrefin, "CREDITOS OBLIGATORIOS")
+#    print("valor numerico es:  ", valornumerico)
+    #█═══════════════[ Conteo creditos obligatorios ] ═════════════════════════════════█
+    if (valornumerico == True):
+        print("contando creditos obligatorios")
 
-    #█═══════════════[ Imprimir Inputs ] ═════════════════════════════════█
-    
-    
-    
+
+
+#————————————————————»✦«—————————————————————————————————————————————————#
+def conteocreditossemestre():
+    #█═══════════════[ Obtner inputs ] ═════════════════════════════════█
+    semestreinicio = vsemestre2.get()
+    semestrefin = nosemestre2.get()
+    #█═══════════════[ Validar inputs ] ═════════════════════════════════█
+    #──O────────────────O───────
+    valornumerico = validadoresinputs(semestreinicio,semestrefin, "CREDITOS DEL SEMESTRE")
+#    print("valor numerico es:  ", valornumerico)
+    #█═══════════════[ Conteo creditos semestre ] ═════════════════════════════════█
+    if (valornumerico == True):
+        print("contando creditos semestre")
