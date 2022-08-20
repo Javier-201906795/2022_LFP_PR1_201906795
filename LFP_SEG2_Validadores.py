@@ -30,19 +30,26 @@ def validadorcamposextra(_listaElementos):
         #──O────────────────O─
         # Validador
         if (mensaje != ""):
-            VNT0.Mostrar("Error [Segmentador SEG2]:  \n"+ mensaje)
+            VNT0.Mostrar("Error [Segmentador SEG2]: Deben de ser 7 Campos  \n"+ mensaje)
             return True
         else:
             return False
         #──O────────────────O─
     except Exception as e:
         VNT0.Mostrar("Error [Segmentador SEG2]: Ocurrio un error al validar campos extra o faltantes \n " + str(e))
+
+
 #————————————————————»✦«—————————————————————————————————————————————————#
 def exportarValidadores(listaElementos):
     # print("Lista: ", listaElementos)
     #█═══════════════[ Validar si no hay campos extra o faltantes ] ══════════════════════════════════█
     #funcion devuleve True o False
     Validadorcamposextras = validadorcamposextra(listaElementos)
-    print("validadorcampos: ", Validadorcamposextras)
+    #█═══════════════[ Validar Codigo Curso ] ══════════════════════════════════█
+    #──O────────────────O─
+    #Validador 
+    if (Validadorcamposextras == False):
+        print("Validando Codigo curso....")
+    
 
     

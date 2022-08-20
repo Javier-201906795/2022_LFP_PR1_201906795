@@ -81,9 +81,8 @@ def exportartexto(texto):
         listaElementos = separadorpuntoycoma(listadoComas)
         # print("test3: ", listaElementos)
 
-    #█═══════════════[ Exportar a Validadores de Elementos ] ══════════════════════════════════█
+    #█═══════════════[ Exportar a Validadores SEG ] ══════════════════════════════════█
     #──O────────────────O─
     #Validador 3
     if (listadoSaltosLinea != None and listadoComas != None and listaElementos != None):
-        print("Exportar a Validadores")
         SEG2.exportarValidadores(listaElementos)
