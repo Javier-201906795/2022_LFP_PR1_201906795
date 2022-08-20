@@ -1,10 +1,10 @@
 #█┼┼┼┼┼┼┼┼┼┼┼[ IMPORTACIONES ]┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼█
 import LFP_VNT0_Errores as VNT0
+import LFP_SEG2_Validadores as SEG2
 
 
 #█┼┼┼┼┼┼┼┼┼┼┼[ VARIABLES GLOBLAES ]┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼█
-global Texto
-Texto = " "
+
 
 
 #█┼┼┼┼┼┼┼┼┼┼┼[ FUNCIONES  ]┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼█
@@ -79,10 +79,11 @@ def exportartexto(texto):
     #Validador 2
     if (listadoSaltosLinea != None and listadoComas != None):
         listaElementos = separadorpuntoycoma(listadoComas)
-        print("test3: ", listaElementos)
+        # print("test3: ", listaElementos)
 
     #█═══════════════[ Exportar a Validadores de Elementos ] ══════════════════════════════════█
     #──O────────────────O─
     #Validador 3
     if (listadoSaltosLinea != None and listadoComas != None and listaElementos != None):
         print("Exportar a Validadores")
+        SEG2.exportarValidadores(listaElementos)
