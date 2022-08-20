@@ -32,7 +32,7 @@ def Mostrar(mensaje):
 
     #█═══════════════[ Ventan configuracion ] ═════════════════════█
     ventana = tk.Toplevel()
-    ventana.geometry('500x150')
+    ventana.geometry('550x150')
     ventana.title('PRACTICA 1 - MENSAJE')
     #█═══════════════[ Textos ] ═══════════════════════════════════█
     tk.Label(ventana, text= _mensaje).place(x=20, y=10)
