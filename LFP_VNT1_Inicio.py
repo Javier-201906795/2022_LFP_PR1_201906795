@@ -53,7 +53,7 @@ def SeleccionarArchivo():
         #──O────────────────O─────────────────
         #tipo de archivo que puede seleccionar
         filetype = [
-            ("Archivos LFP", "*.form"),
+            ("Archivos LFP", "*.lfp"),
             ("Todos los archivos", "*.*")
         ]
         )
@@ -78,7 +78,6 @@ def SeleccionarArchivo():
             VNT0.Mostrar("El archivo seleccionado esta vacio.")    
         else:
             #VNT0.Mostrar("El archivo fue leido con exito.")
-            print("leido")
             #──O────────────────O──────────
             #Funciones para segmentar los datos,
             SEG1.exportartexto(text)

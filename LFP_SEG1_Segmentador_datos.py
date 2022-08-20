@@ -85,4 +85,4 @@ def exportartexto(texto):
     #──O────────────────O─
     #Validador 3
     if (listadoSaltosLinea != None and listadoComas != None and listaElementos != None):
-        print("Exportar")
+        print("Exportar a Validadores")
