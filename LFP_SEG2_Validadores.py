@@ -149,19 +149,61 @@ def validadorprerequisitos(_listaElementos,ini,titulo):
 
 
 #————————————————————»✦«—————————————————————————————————————————————————##
-def validadorcursobligatorio(_listadoelementos,ini):
+def validadorcursobligatorio(_listadoelementos,ini,nomeclatura,listacomparacion):
     try:
         #█═══════════════[ Validar si son numeros ] ══════════════════════════════════█
         Mensajevalidadorlistanumero = Bvalidadorlistadonumero(_listadoelementos,ini)
         #Validador
         if(Mensajevalidadorlistanumero != ""):
             #No son todos numeros
-            VNT0.Mostrar(Mensajevalidadorlistanumero)
+            mensaje0 = "Error en Codigo Curso Obligatorio. "+ Mensajevalidadorlistanumero
+            VNT0.Mostrar(mensaje0)
             return False
         else:
+            #──O────────────────O─
             #Son todos numeros
-            #print("Validando Curso Obligatorio.... True")
-            return True
+            #█═══════════════[ Validar la nomeclatura ] ══════════════════════════════════█
+            #Validador si hay un listado de opciones correctas
+            if(nomeclatura == True):
+                mensaje2 = ""
+                #──O────────────────O─
+                #Validar la nomeclatura
+                #Evaluar cada elemento
+                for i in range(0,len(_listadoelementos)):
+                    #──O────────────────O─
+                    #Evaluar si es un numero del listado
+                    numero = _listadoelementos[i][ini]
+                    #Validador
+                    banderaconcidencias = False
+                    #Recorre la lista comparacion
+                    for j in range(0,len(listacomparacion)):
+                        #Evalua
+                        if (numero == listacomparacion[j]):
+                            banderaconcidencias = True
+                            #para el ciclo for
+                            break
+                        else:
+                            #La banera se queda en False
+                            #No hubieron concidencias
+                            None
+                    #──O────────────────O─
+                    # Validar si hubieron conciedencias    
+                    if (banderaconcidencias == False):
+                        mensaje2 += "linea " + str(i+1) +", "
+                #──O────────────────O─
+                #Validar si hay errores de concidencias en el listado
+                if (mensaje2 != ""):
+                    mensaje2 = "Error [Segmentador SEG2]: En codigo Obligatorio hay errores de codigo revisar las siguientes lineas: "+ mensaje2
+                    VNT0.Mostrar(mensaje2)
+                    return False
+                else:
+                    return True
+                #──O────────────────O─
+            else:
+                #──O────────────────O─
+                #No hay comparaciones
+                return True
+                #──O────────────────O─
         
     except Exception as e:
         VNT0.Mostrar("Error [Segmentador SEG2]: Ocurrio un error al validar si es obligatorio. \n"+str(e))
@@ -220,7 +262,7 @@ def exportarValidadores(listaElementos):
         Validadorprereqisitos= validadorprerequisitos(listaElementos,2," prerequisitos")
         print("Validando Prerequisitos curso.... ",Validadorprereqisitos)
         #█═══════════════[ Validar Obligatorio ] ══════════════════════════════════█
-        ValidadorObligatorio = validadorcursobligatorio(listaElementos,3)
+        ValidadorObligatorio = validadorcursobligatorio(listaElementos,3,True,['0','1'])
         print("Validando Curso Obligatorio.... ",ValidadorObligatorio)
         
     
