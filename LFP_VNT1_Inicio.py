@@ -77,7 +77,8 @@ def SeleccionarArchivo():
         if (Texto == "" or Texto == " " or Texto == "   "):
             VNT0.Mostrar("El archivo seleccionado esta vacio.")    
         else:
-            VNT0.Mostrar("El archivo fue leido con exito.")
+            #VNT0.Mostrar("El archivo fue leido con exito.")
+            print("leido")
             #──O────────────────O──────────
             #Funciones para segmentar los datos,
             SEG1.exportartexto(text)
