@@ -145,6 +145,29 @@ def validadorprerequisitos(_listaElementos,ini,titulo):
         VNT0.Mostrar("Error [Segmentador SEG2]: Ocurrio un erro al validar codigo curso. \n"+str(e))
         return None
 
+
+
+
+#————————————————————»✦«—————————————————————————————————————————————————##
+def validadorcursobligatorio(_listadoelementos,ini):
+    try:
+        #█═══════════════[ Validar si son numeros ] ══════════════════════════════════█
+        Mensajevalidadorlistanumero = Bvalidadorlistadonumero(_listadoelementos,ini)
+        #Validador
+        if(Mensajevalidadorlistanumero != ""):
+            #No son todos numeros
+            VNT0.Mostrar(Mensajevalidadorlistanumero)
+            return False
+        else:
+            #Son todos numeros
+            #print("Validando Curso Obligatorio.... True")
+            return True
+        
+    except Exception as e:
+        VNT0.Mostrar("Error [Segmentador SEG2]: Ocurrio un error al validar si es obligatorio. \n"+str(e))
+
+
+
 #————————————————————»✦«—————————————————————————————————————————————————##
 #Boolean #Reusable
 def Bvalidadornumero(textonum):
@@ -155,12 +178,28 @@ def Bvalidadornumero(textonum):
         return False
 #————————————————————»✦«—————————————————————————————————————————————————##
 #Boolean #Reusable
-def Bvalidadorlistadonumero(listanum):
+def Bvalidadorlistadonumero(listanum, ini):
     try:
         mensaje = ""
+        #──O────────────────O─
+        #Evaluar lista numero
+        for i in range(0,len(listanum)):
+            txtnumero = listanum[i][ini]
+            #──O────────────────O─
+            #Evaluar si es un numero
+            try:
+                numero = int(txtnumero)
+            except:
+                mensaje += "linea "+ str(i+1)+", " 
+        #──O────────────────O─
+        #Si hubo errores completar mensaje
+        if (mensaje != ""):
+            mensaje = "Error: hay valores que no son numeros en las siguiente Lineas: " + mensaje
+        
+
         return mensaje
     except Exception as e:
-        mensaje = ""
+        mensaje = "Error [Segmentador SEG2]: Ocurrio un error en Bvalidadorlistadonumero "
         return mensaje
     
 
@@ -180,7 +219,9 @@ def exportarValidadores(listaElementos):
         #█═══════════════[ Validar Prerequisitos Curso ] ══════════════════════════════════█
         Validadorprereqisitos= validadorprerequisitos(listaElementos,2," prerequisitos")
         print("Validando Prerequisitos curso.... ",Validadorprereqisitos)
-        #──O────────────────O─
+        #█═══════════════[ Validar Obligatorio ] ══════════════════════════════════█
+        ValidadorObligatorio = validadorcursobligatorio(listaElementos,3)
+        print("Validando Curso Obligatorio.... ",ValidadorObligatorio)
         
     
 
