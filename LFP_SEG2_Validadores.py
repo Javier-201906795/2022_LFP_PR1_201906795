@@ -87,6 +87,64 @@ def validadorcodigocurso(_listaElementos,ini,titulo):
         VNT0.Mostrar("Error [Segmentador SEG2]: Ocurrio un erro al validar codigo curso. \n"+str(e))
         return None
 
+
+#————————————————————»✦«—————————————————————————————————————————————————#
+def validadorprerequisitos(_listaElementos,ini,titulo):
+    try:
+        mensajeerror = ""
+        #█═══════════════[ Validar es Codigo ] ══════════════════════════════════█
+        #Valida si es un numero positivo menor a o igual a 3
+        #recorre elementos
+        for i in range(0,len(_listaElementos)):
+            #recorre campos (prerequisitos)
+            for j in range(0,len(_listaElementos[i][ini])):
+                #──O────────────────O─
+                validadornum = Bvalidadornumero(_listaElementos[i][ini][j])
+                #Validador si es un numero
+                if(validadornum == True):
+                    #──O────────────────O─
+                    #Validar si es un numero Positivo
+                    if(int(_listaElementos[i][ini][j]) > 0 ):
+                        #──O────────────────O─
+                        #Quitar ceros a la izquierda
+                        numero= int(_listaElementos[i][ini][j])
+                        #──O────────────────O─
+                        #Validar si es un numero de 3 digitos
+                        if(numero <= 999):
+                            None
+                        else:
+                            #──O────────────────O─
+                            #No es un codigo valido
+                            mensajeerror += "Linea " + str(i+1) + " (Error: No es un codigo Valido), "    
+                    else:
+                        #──O────────────────O─
+                        #No es un positivo
+                        mensajeerror += "Linea " + str(i+1) + " (Error: No es un numero Positivo), "    
+                else:
+                    #──O────────────────O─
+                    #No es un numero 
+                    #Evaluar si esta vacio
+                    txtprerequisito = _listaElementos[i][ini][j]
+                    if (txtprerequisito == "" or txtprerequisito == " "):
+                        None
+                    else:
+                        mensajeerror += "Linea " + str(i+1) + " (Error: No es un numero), "
+        #──O────────────────O─
+        if (mensajeerror == ""):
+            #──O────────────────O─
+            #No hay errores de Codigo
+            return True
+        else:
+            #──O────────────────O─
+            VNT0.Mostrar("Error [Segmentador SEG2]: Revisar campo "+titulo+" en las siguiente lineas: " + mensajeerror)
+            return False
+                
+        
+        #──O────────────────O─
+    except Exception as e:
+        VNT0.Mostrar("Error [Segmentador SEG2]: Ocurrio un erro al validar codigo curso. \n"+str(e))
+        return None
+
 #————————————————————»✦«—————————————————————————————————————————————————##
 #Boolean #Reusable
 def Bvalidadornumero(textonum):
@@ -95,6 +153,15 @@ def Bvalidadornumero(textonum):
         return True
     except Exception as e:
         return False
+#————————————————————»✦«—————————————————————————————————————————————————##
+#Boolean #Reusable
+def Bvalidadorlistadonumero(listanum):
+    try:
+        mensaje = ""
+        return mensaje
+    except Exception as e:
+        mensaje = ""
+        return mensaje
     
 
 #————————————————————»✦«—————————————————————————————————————————————————#
@@ -111,7 +178,8 @@ def exportarValidadores(listaElementos):
         Validadorcodigocurso = validadorcodigocurso(listaElementos,0,"codigo carrera")
         print("Validando Codigo curso.... ",Validadorcodigocurso)
         #█═══════════════[ Validar Prerequisitos Curso ] ══════════════════════════════════█
-
+        Validadorprereqisitos= validadorprerequisitos(listaElementos,2," prerequisitos")
+        print("Validando Prerequisitos curso.... ",Validadorprereqisitos)
         #──O────────────────O─
         
     
