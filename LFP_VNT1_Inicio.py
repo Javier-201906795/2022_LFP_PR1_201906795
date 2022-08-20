@@ -8,6 +8,7 @@ from tkinter import filedialog
 import LFP_VNT0_Errores as VNT0
 import LFP_VNT2_0_Gestionar_Cursos as VNT2
 import LFP_VNT3_0_Conteo_Creditos as VTN3
+import LFP_SEG1_Segmentador_datos as SEG1
 
 
 #█┼┼┼┼┼┼┼┼┼┼┼[ VARIABLES GLOBLAES ]┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼█
@@ -77,6 +78,10 @@ def SeleccionarArchivo():
             VNT0.Mostrar("El archivo seleccionado esta vacio.")    
         else:
             VNT0.Mostrar("El archivo fue leido con exito.")
+            #──O────────────────O──────────
+            #Funciones para segmentar los datos,
+            SEG1.exportartexto(text)
+            
 
         
     except Exception as e:
