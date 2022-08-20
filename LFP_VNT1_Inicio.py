@@ -86,5 +86,5 @@ def SeleccionarArchivo():
 
         
     except Exception as e:
-        VNT0.Mostrar("Error al seleccionar el archivo. /n " + str(e))
+        VNT0.Mostrar("Error al seleccionar el archivo. \n " + str(e))
 
