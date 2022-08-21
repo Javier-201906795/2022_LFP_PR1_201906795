@@ -213,14 +213,14 @@ def validadorcursobligatorio(_listadoelementos,ini,nomeclatura,listacomparacion)
 
 #————————————————————»✦«—————————————————————————————————————————————————##
 #Boolean #Reusable
-def Bvalidadorlistadonumeroopciones(_listadoelementos,ini,nomeclatura,listacomparacion):
+def Bvalidadorlistadonumeroopciones(_listadoelementos,ini,nomeclatura,listacomparacion,etiqueta):
     try:
         #█═══════════════[ Validar si son numeros ] ══════════════════════════════════█
         Mensajevalidadorlistanumero = Bvalidadorlistadonumero(_listadoelementos,ini)
         #Validador
         if(Mensajevalidadorlistanumero != ""):
             #No son todos numeros
-            mensaje0 = "Error en Campo SEMESTRE. "+ Mensajevalidadorlistanumero
+            mensaje0 = "Error en Campo "+str(etiqueta)+". "+ Mensajevalidadorlistanumero
             VNT0.Mostrar(mensaje0)
             return False
         else:
@@ -257,7 +257,7 @@ def Bvalidadorlistadonumeroopciones(_listadoelementos,ini,nomeclatura,listacompa
                 #──O────────────────O─
                 #Validar si hay errores de concidencias en el listado
                 if (mensaje2 != ""):
-                    mensaje2 = "Error [Segmentador SEG2]: En codigo Obligatorio hay errores de codigo revisar las siguientes lineas: "+ mensaje2
+                    mensaje2 = "Error [Segmentador SEG2]: En el campo "+etiqueta+" hay errores de codigo revisar las siguientes lineas: "+ mensaje2
                     VNT0.Mostrar(mensaje2)
                     return False
                 else:
@@ -269,7 +269,7 @@ def Bvalidadorlistadonumeroopciones(_listadoelementos,ini,nomeclatura,listacompa
                 return True
                 #──O────────────────O─
     except Exception as e:
-        VNT0.Mostrar("Error [Segmentador SEG2]: Ocurrio un error al validar semestre. \n"+str(e))
+        VNT0.Mostrar("Error [Segmentador SEG2]: Ocurrio un error al validar "+etiqueta+". \n"+str(e))
         return None
 
 
@@ -329,9 +329,20 @@ def exportarValidadores(listaElementos):
         ValidadorObligatorio = validadorcursobligatorio(listaElementos,3,True,['0','1'])
         print("Validando Curso Obligatorio.... ",ValidadorObligatorio)
         #█═══════════════[ Validar Semestre ] ══════════════════════════════════█
-        ValidadorSemestre = Bvalidadorlistadonumeroopciones(listaElementos,4,False,None)
+        ValidadorSemestre = Bvalidadorlistadonumeroopciones(listaElementos,4,False,None,"SEMESTRE")
         print("Validando Semestre.... ", ValidadorSemestre)
-
+        #█═══════════════[ Validar Creditos ] ══════════════════════════════════█
+        ValidadorCreditos = Bvalidadorlistadonumeroopciones(listaElementos,5,False,None,"CREDITOS")
+        print("Validando Creditos.... ", ValidadorCreditos)
+        #█═══════════════[ Validar Estados ] ══════════════════════════════════█
+        ValidadorEstados = Bvalidadorlistadonumeroopciones(listaElementos,6,True,['0','1','-1'],"ESTADOS")
+        print("Validando Estados.... ", ValidadorEstados)
     
-
+    #█═══════════════[ Validardor en General ] ══════════════════════════════════█ 
+    if(Validadorcodigocurso == True and Validadorprereqisitos == True and ValidadorObligatorio == True and ValidadorSemestre == True and ValidadorCreditos == True and ValidadorEstados == True):
+        #Si todo los campos estan bien 
+        print("Archivo LFP Validado.")
+        print("================================")
+    else:
+        print("Hubo un Error al cargar el archivo LFP porfavor corregir el error.")
     
