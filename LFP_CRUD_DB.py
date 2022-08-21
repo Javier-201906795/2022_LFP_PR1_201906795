@@ -1,4 +1,5 @@
 #█┼┼┼┼┼┼┼┼┼┼┼[ IMPORTACIONES ]┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼█
+import pathlib
 import LFP_VNT0_Errores as VNT0
 
 
@@ -18,14 +19,60 @@ def cargamasiva(listaElementos):
         #Evalua que no se repitan los cursos
         #──O────────────────O─
         #Carga la DB en un listado 
-
+        ListadoDB = leerdb()
+        
         #█═══════════════[ Guardar en Base de Datos ] ══════════════════════════════════█ 
         #Guarda la informacion en un archivo CSV 
 
         
     except Exception as e:
         VNT0.Mostrar("Error [CRUD]: Ocurrio un error en la carga masiva. \n"+e)
-    
+
+#————————————————————»✦«—————————————————————————————————————————————————#
+def leerdb():
+    try:
+        print("Leyendo DB....")
+        #──O────────────────O─
+        #Buscar ruta del fichero
+        Ruta = pathlib.Path(__file__).parent.absolute()
+        txtRuta = str(Ruta)
+        txtRutaDB = txtRuta + "\LFP_DB.csv"
+        #──O────────────────O─
+        #Abrir el archivo
+        archivocsv = open(txtRutaDB, "r", encoding="utf-8")
+        #──O────────────────O─
+        #Leer archivo csv
+        #crea un listado con cada linea 
+        listacsv = archivocsv.readlines()
+        #──O────────────────O─
+        #quitar saltos de lineas
+        for i in range(0,len(listacsv)):
+            temp = listacsv[i]
+            #quita el salto de linea
+            listacsv[i]= temp.rstrip()
+        #──O────────────────O─
+        #Separa comas (,)
+        for i in range(0, len(listacsv)):
+            temp = listacsv[i]
+            #lo guarda en un segundo listado
+            listacsv[i] = listacsv[i].split(",")
+        #──O────────────────O─
+        #Separa punto y comas (;)
+        for i in range(0,len(listacsv)):
+            temp = listacsv[i][2]
+            listtemp = temp.split(";")
+            listacsv[i][2] = listtemp
+
+        return listacsv
+
+
+
+    except Exception as e:
+        print("Error [CRUD]: Ocurrio un error al leer DB. \n"+e)
+        return None
+
+
+
 #————————————————————»✦«—————————————————————————————————————————————————#
 def comparadorconcidencias(lista1,lista2,ini):
     #lista origianl vs lista comparada
