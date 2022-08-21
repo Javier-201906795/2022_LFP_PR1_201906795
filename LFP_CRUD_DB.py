@@ -13,17 +13,25 @@ def cargamasiva(listaElementos):
     try:
         print("CRUD | cargamasiva : Evaluando....")
         #█═══════════════[ Guardar en Variable Global ] ══════════════════════════════════█ 
-        global ListadoElemento
-        ListadoElemento = listaElementos
+        global ListadoElementos
+        ListadoElementos = listaElementos
         #█═══════════════[ Compara Cursos actuales vs carga masiva ] ══════════════════════════════════█ 
         #Evalua que no se repitan los cursos
         #──O────────────────O─
         #Carga la DB en un listado 
         ListadoDB = leerdb()
-        print(ListadoDB)
-        
+#        print(ListadoDB)
+        #──O────────────────O─
+        #Comprar listados en busquedad de concidencias codigo
+        Listacondiencias = comparadorconcidencias(ListadoDB,ListadoElementos,0)
+#        print(Listacondiencias)
+        #──O────────────────O─
+        #sobre escribe los valores repetidos
+
+
         #█═══════════════[ Guardar en Base de Datos ] ══════════════════════════════════█ 
         #Guarda la informacion en un archivo CSV 
+
 
         
     except Exception as e:
@@ -64,6 +72,7 @@ def leerdb():
             listtemp = temp.split(";")
             listacsv[i][2] = listtemp
 
+        print("OK")
         return listacsv
 
 
@@ -78,6 +87,7 @@ def leerdb():
 def comparadorconcidencias(lista1,lista2,ini):
     #lista origianl vs lista comparada
     try:
+        print("Buscando concidencias codigo.... ")
         #──O────────────────O─
         #Evalua los elementos de la lista 1 con los de la lista 2
         Bconcidencias = False
@@ -92,7 +102,7 @@ def comparadorconcidencias(lista1,lista2,ini):
                     #──O────────────────O─
                     #Si hay concidencias 
                     #Marcar posicion
-                    listaconcidencias.append(j)
+                    listaconcidencias.append([i,j])
                     #Validador
                     Bconcidencias = True
                 else:
