@@ -20,6 +20,7 @@ def cargamasiva(listaElementos):
         #──O────────────────O─
         #Carga la DB en un listado 
         ListadoDB = leerdb()
+        print(ListadoDB)
         
         #█═══════════════[ Guardar en Base de Datos ] ══════════════════════════════════█ 
         #Guarda la informacion en un archivo CSV 
