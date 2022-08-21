@@ -1,6 +1,6 @@
 #█┼┼┼┼┼┼┼┼┼┼┼[ IMPORTACIONES ]┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼█
 import LFP_VNT0_Errores as VNT0
-
+import LFP_CRUD_DB as CRUD
 
 #█┼┼┼┼┼┼┼┼┼┼┼[ VARIABLES GLOBLAES ]┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼█
 
@@ -340,9 +340,15 @@ def exportarValidadores(listaElementos):
     
     #█═══════════════[ Validardor en General ] ══════════════════════════════════█ 
     if(Validadorcodigocurso == True and Validadorprereqisitos == True and ValidadorObligatorio == True and ValidadorSemestre == True and ValidadorCreditos == True and ValidadorEstados == True):
+        #──O────────────────O─
         #Si todo los campos estan bien 
         print("Archivo LFP Validado.")
         print("================================")
+        #──O────────────────O─
+        #Guardar los valores en un base de datos temporales
+        CRUD.cargamasiva(listaElementos)
+
     else:
         print("Hubo un Error al cargar el archivo LFP porfavor corregir el error.")
+        VNT0.Mostrar("No se cargo el archivo LFP.")
     
