@@ -77,9 +77,9 @@ def cargamasiva(listaElementos):
 
         #█═══════════════[ Guardar en Base de Datos ] ══════════════════════════════════█ 
         # #Guarda la informacion en un archivo CSV 
-        # textocsv = convertirlistaacsv(ListadoDB)
-        # print("TextoCSV: ")
-        # print(textocsv)
+        textocsv = convertirlistaacsv(ListadoDB)
+        print("TextoCSV: ")
+        print(textocsv)
 
 
         
@@ -172,6 +172,7 @@ def comparadorconcidencias(lista1,lista2,ini):
 #————————————————————»✦«—————————————————————————————————————————————————#
 def convertirlistaacsv(lista):
     try:
+        print("Convirtiendo listado a texto...")
         #Colocar elementos coma
         txtnuevo = ""
         #recorre linea
@@ -180,9 +181,38 @@ def convertirlistaacsv(lista):
             #recorre subelementos
             #──O────────────────O─
             for j in range(0,len(lista[i])):
-                #coloca comas
-                txtnuevo += lista[i][j] + ","
+                
+                if (j == (len(lista[i])-1)):
+                    #coloca final
+                    txtnuevo += str(lista[i][j]) 
+                elif (j == 2):
+                    #coloca punto y coma
+                    #ciclo for para sacar del listado
+                    txttemplist = ""
+                    
+                    #──O────────────────O─
+                    #Si el texto es cursos de prerequisitos
+                    print(len(lista[i][2]))
+                    if (len(lista[i][2]) != 0):
+                        #──O────────────────O─
+                        for k in range(0,len(lista[i][2])):
+                            #Evaluar si es el ultimo valor para no poner putno y coma
+                            if (k == (len(lista[i][2]) - 1)):
+                                txttemplist += str(lista[i][2][k]) + ","
+                            else:    
+                                txttemplist += str(lista[i][2][k]) + ";"
+                        #──O────────────────O─
+                        #agrega el listado
+                        #print("txttemplist: ", txttemplist)
+                        txtnuevo += txttemplist
+                    else:
+                        #no hay cursos de prerequisitos
+                        txtnuevo += ","
+                else:
+                    #coloca comas
+                    txtnuevo += str(lista[i][j]) + ","
             #──O────────────────O─
+            txtnuevo += "\n" 
         #──O────────────────O─
 
         return txtnuevo
