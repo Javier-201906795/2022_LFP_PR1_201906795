@@ -19,10 +19,10 @@ def agregarcurso(ListaCurso):
     print(ListaCurso)
     textoDB = obtenretextoDB()
     textocsv = textoacsv(ListaCurso)
-    textoGrabarDB = textoDB  + textocsv
+    textoGrabarDB = textoDB  + textocsv + "\n"
     print("texto csv: \n" + textoGrabarDB)
     #█═══════════════[ Agregar curso ] ══════════════════════════════════█ 
-    
+    CRUD.escribirDB(textoGrabarDB)
 
 #————————————————————»✦«—————————————————————————————————————————————————#
 def obtenretextoDB():
