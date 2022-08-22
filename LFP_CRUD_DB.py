@@ -192,7 +192,7 @@ def convertirlistaacsv(lista):
                     
                     #──O────────────────O─
                     #Si el texto es cursos de prerequisitos
-                    print(len(lista[i][2]))
+                    #print(len(lista[i][2]))
                     if (len(lista[i][2]) != 0):
                         #──O────────────────O─
                         for k in range(0,len(lista[i][2])):
