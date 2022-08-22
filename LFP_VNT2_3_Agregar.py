@@ -6,6 +6,7 @@ from tkinter import filedialog
 #──O────────────────O────────
 #INTERFACES GRAFICAS VENTANAS
 import LFP_VNT0_Errores as VNT0
+import LFP_CRUD_DB2 as CRUD2
 
 #█┼┼┼┼┼┼┼┼┼┼┼[ VARIABLES GLOBALES ]┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼█
 #──O────────────────O───────────
@@ -125,12 +126,15 @@ def Agregar():
     if (len(mensaje) > 0):
         print("mensaje: ",mensaje)
         VNT0.Mostrar(mensaje)
-    print(espaciosVacios)
-    print("--------------------------------------")
+    else:
+        print(espaciosVacios)
+        print("--------------------------------------")
 
-    #█═══════════════[ Evaluar Inputs ] ═════════════════════════════════█
+        #█═══════════════[ Evaluar Inputs ] ═════════════════════════════════█
 
-    #█═══════════════[ Imprimir Inputs ] ═════════════════════════════════█
+        #█═══════════════[ Listar Inputs ] ═════════════════════════════════█
+        ListaCurso = [tcodigo, tnombre,tprerequisito,tsemestre,topcionalidad,tcreditos,testados]
+        #█═══════════════[ CRUD GUARDAR ] ═════════════════════════════════█
     
-    
+        CRUD2.agregarcurso(ListaCurso)
     

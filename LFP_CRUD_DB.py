@@ -1,6 +1,5 @@
 #█┼┼┼┼┼┼┼┼┼┼┼[ IMPORTACIONES ]┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼█
 import pathlib
-import re
 import LFP_VNT0_Errores as VNT0
 
 
@@ -126,9 +125,12 @@ def escribirDB(textonuevo):
         txtRutaDB = txtRuta + "\LFP_DB.csv"
         #──O────────────────O─
         #Abrir el archivo
+        archivocsv1 = open(txtRutaDB, "r", encoding="utf-8")
         archivocsv = open(txtRutaDB, "w", encoding="utf-8")
         #──O────────────────O─
         #Guardar
+        textoanterior = archivocsv1.read()
+        textonuevo = textoanterior + textonuevo
         archivocsv.write(textonuevo)
         # CERRAR ARCHIVO
         archivocsv.close()
