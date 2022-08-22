@@ -42,48 +42,48 @@ def Cerrar(ventana):
     ventana.destroy()
 #————————————————————»✦«—————————————————————————————————————————————————#
 def SeleccionarArchivo():
-    try:
-        #──O────────────────O─
-        #opciones del buscador
-        archivo = filedialog.askopenfilename(
-        title = "Selecciona un archivo",
-        #──O────────────────O─────────────────────
-        #accede a la carpeta donde esta el archivo 
-        initialdir =  "./",
-        #──O────────────────O─────────────────
-        #tipo de archivo que puede seleccionar
-        filetype = [
-            ("Archivos LFP", "*.lfp"),
-            ("Todos los archivos", "*.*")
-        ]
-        )
+    # try:
+    #──O────────────────O─
+    #opciones del buscador
+    archivo = filedialog.askopenfilename(
+    title = "Selecciona un archivo",
+    #──O────────────────O─────────────────────
+    #accede a la carpeta donde esta el archivo 
+    initialdir =  "./",
+    #──O────────────────O─────────────────
+    #tipo de archivo que puede seleccionar
+    filetype = [
+        ("Archivos LFP", "*.lfp"),
+        ("Todos los archivos", "*.*")
+    ]
+    )
 
-        #──O────────────────O─────────────────
-        #abre el archivo seleccionado y lo lee
-        with open(archivo, 'r', encoding='utf8') as file:
-                text = file.read()
-                file.close()
+    #──O────────────────O─────────────────
+    #abre el archivo seleccionado y lo lee
+    with open(archivo, 'r', encoding='utf8') as file:
+            text = file.read()
+            file.close()
+    #──O────────────────O──────────
+    #guardar en una variable global
+    global Texto
+    Texto = text
+    #──O────────────────O──────────
+    #Imprime valores
+    print("\n================================")
+    print(text)
+    print("\n================================")
+    #──O────────────────O──────────
+    #Validar si esta vacio el archivo
+    if (Texto == "" or Texto == " " or Texto == "   "):
+        VNT0.Mostrar("El archivo seleccionado esta vacio.")    
+    else:
+        #VNT0.Mostrar("El archivo fue leido con exito.")
         #──O────────────────O──────────
-        #guardar en una variable global
-        global Texto
-        Texto = text
-        #──O────────────────O──────────
-        #Imprime valores
-        print("\n================================")
-        print(text)
-        print("\n================================")
-        #──O────────────────O──────────
-        #Validar si esta vacio el archivo
-        if (Texto == "" or Texto == " " or Texto == "   "):
-            VNT0.Mostrar("El archivo seleccionado esta vacio.")    
-        else:
-            #VNT0.Mostrar("El archivo fue leido con exito.")
-            #──O────────────────O──────────
-            #Funciones para segmentar los datos,
-            SEG1.exportartexto(text)
-            
+        #Funciones para segmentar los datos,
+        SEG1.exportartexto(text)
+        
 
         
-    except Exception as e:
-        VNT0.Mostrar("Error al seleccionar el archivo. \n " + str(e))
+    # except Exception as e:
+    #     VNT0.Mostrar("Error al seleccionar el archivo. \n " + str(e))
 
