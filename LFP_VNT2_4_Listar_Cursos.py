@@ -9,7 +9,6 @@ import LFP_VNT0_Errores as VNT0
 import LFP_VNT2_3_Agregar as VNT2_3
 import LFP_VNT2_9_Buscar as VNT9
 import LFP_CRUD_DB as CRUD
-import LFP_VNT2_4_Listar_Cursos as VNT2_4
 
 
 
@@ -33,16 +32,38 @@ def Mostrar():
         #█═══════════════[ Ventana ] ═════════════════════════════════█
         global ventana
         ventana = tk.Toplevel()
-        ventana.geometry('300x250')
+        ventana.geometry('500x500')
         #──O────────────────O───
         #Observador Boton Cerrar
         ventana.protocol("WM_DELETE_WINDOW",Cerrar)
+        #█═══════════════[ Texto] ═════════════════════════════════█
+        ListadoDB = CRUD.leerdb()
+        print(ListadoDB)
+        texto = str(ListadoDB)
+
+        _mensaje = texto
+        #█═══════════════[ Evaluar mensaje ] ═════════════════════█
+        #──O────────────────O────────
+        #Evalua si un texto largo y agrega saltos de linea
+        if (len(texto) > 90 and len(texto) < 180):
+            _mensaje = texto[0:90] + ' -\n'
+            _mensaje += texto[90:len(texto)]
+        elif (len(texto) > 180 and len(texto) < 270):
+            _mensaje = texto[0:90] + ' -\n'
+            _mensaje += texto[91:180] + ' -\n'
+            _mensaje += texto[181:len(texto)] + '\n'
+        elif (len(texto) > 270):
+            _mensaje = texto[0:90] + ' -\n'
+            _mensaje += texto[91:180] + ' -\n'
+            _mensaje += texto[181:270] + ' -\n'
+            _mensaje += texto[271:350] + '..... \n'
+            
+
+
+
+        tk.Label(ventana, text=_mensaje).place(x=50, y=10)
         #█═══════════════[ Boton ] ═════════════════════════════════█
-        tk.Button(ventana, text='Listar Cursos', command= lambda : ListarCurso()).place(x=100, y=30)
-        tk.Button(ventana, text='Agregar Curso', command= lambda : VNT2_3.Mostrar()).place(x=100, y=70)
-        tk.Button(ventana, text='Editar Curso', command= lambda : VNT9.Mostrar("EDITAR")).place(x=100, y=110)
-        tk.Button(ventana, text='Eliminar Curso', command= lambda : VNT9.Mostrar("ELIMINAR")).place(x=100, y=150)
-        tk.Button(ventana, text='Regresar', command= lambda : Cerrar()).place(x=100, y=190)
+        tk.Button(ventana, text='Regresar', command= lambda : Cerrar()).place(x=150, y=450)
         #█═══════════════[ Validador ] ═════════════════════════════════█
         VNTAbierta = True
         #──O────────────────O───────
@@ -57,10 +78,3 @@ def Cerrar():
     global VNTAbierta
     VNTAbierta = False
     ventana.destroy()
-#————————————————————»✦«—————————————————————————————————————————————————#
-def ListarCurso():
-    print("°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°")
-    ListadoDB = CRUD.leerdb()
-    print(ListadoDB)
-    print("°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°")
-    VNT2_4.Mostrar()

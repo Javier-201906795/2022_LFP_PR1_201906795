@@ -165,6 +165,8 @@ def Buscar():
 def AccEditar(codigo):
     print("Editando ", codigo)
     #──O────────────────O───────
+    
+    #──O────────────────O───────
     #Abrir ventana y pasar codigo de busquedad
     VNT2_2.Mostrar(codigo)
     
