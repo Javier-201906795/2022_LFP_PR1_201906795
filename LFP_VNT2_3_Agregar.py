@@ -131,10 +131,28 @@ def Agregar():
         print("--------------------------------------")
 
         #█═══════════════[ Evaluar Inputs ] ═════════════════════════════════█
-
+        #Evaluar si es un numero
+        sonnumeros = True
+        try:
+            mensaje = ""
+            for i in range(0,len(ListaInputs)):
+                if ( i == 1):
+                    None
+                else:
+                    try:
+                        numero = int(ListaInputs[i])
+                    except Exception as e:
+                        mensaje += str(ListaInputsNombres[i]) + ", "
+            
+            if (mensaje != ""):
+                mensaje = "Error por favor agrege un valor numerico en: " + mensaje
+                VNT0.Mostrar(mensaje)
+                sonnumeros = False
+        except Exception as e:
+            VNT0.Mostrar("error " + e)
         #█═══════════════[ Listar Inputs ] ═════════════════════════════════█
         ListaCurso = [tcodigo, tnombre,tprerequisito,tsemestre,topcionalidad,tcreditos,testados]
         #█═══════════════[ CRUD GUARDAR ] ═════════════════════════════════█
-    
-        CRUD2.agregarcurso(ListaCurso)
+        if (sonnumeros == True):
+            CRUD2.agregarcurso(ListaCurso)
     
