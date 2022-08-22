@@ -16,6 +16,7 @@ import tkinter as tk
 #──O────────────────O────────
 #INTERFACES GRAFICAS VENTANAS
 import LFP_VNT1_Inicio as VNT1
+import LFP_CRUD_DB as CRUD
 
 
 
@@ -38,6 +39,10 @@ if __name__ == '__main__':
     #█═══════════════[ Mensaje Inicio ] ══════════════════════════════════█
     
     Mensajeinicio()
+
+    #█═══════════════[ Borra Base de Datos ] ══════════════════════════════════█
+    Validadorborrado = CRUD.borrartodoDB()
+    print(Validadorborrado)
 
     #█═══════════════[ Ventana Principal ] ══════════════════════════════════█
     #──O────────────────O─────────────────

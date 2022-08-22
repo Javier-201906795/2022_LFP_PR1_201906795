@@ -21,71 +21,99 @@ def cargamasiva(listaElementos):
         #──O────────────────O─
         #Carga la DB en un listado 
         ListadoDB = leerdb()
-#        print(ListadoDB)
-        #──O────────────────O─
-        #Comprar listados en busquedad de concidencias codigo
-        Listacondiencias = comparadorconcidencias(ListadoDB,ListadoElementos,0)
-#        print(Listacondiencias)
-        #──O────────────────O─
-        #Evaluar
-        if (Listacondiencias != []) :
-            print("Se encontraron condidencias, sobrescribiendo DB.")
-
-            #──O────────────────O─
-            #Sobre escribe los valores repetidos
-            #──O────────────────O─
-            #Nueva lista
-            templist = []
-            for i in range(0,len(ListadoElementos)):
-                templist.append(ListadoElementos[i])
-            #──O────────────────O─
-            contador = -1
-            for i in range(0,len(Listacondiencias)):
-                #print("DB: ", ListadoDB[Listacondiencias[i][0]])
-                #print("E: ", ListadoElementos[Listacondiencias[i][1]])
-                ListadoDB[Listacondiencias[i][0]] = ListadoElementos[Listacondiencias[i][1]]
-                #print("DBnew: ", ListadoDB[Listacondiencias[i][0]])
-                
-                #──O────────────────O─
-                #Elimina el elemento repetido
-                #print("Elemento a eleminar: ", Listacondiencias[i][1] )
-                contador += 1
-                if (contador < 1):
-                    templist.pop(Listacondiencias[i][1])
-                else:
-                    templist.pop(Listacondiencias[i][1] - contador)
-                    
-                
-                
-                
-                
-
+        if (ListadoDB == []):
+            print("DB vacio.")
             #█═══════════════[ Unir listas ] ══════════════════════════════════█ 
             #Unir listas
-            # print(ListadoDB)
-            # print("-------")
-            # print(templist)
-            # print("-------")
-            ListadoDB.extend(templist)
-            # print(ListadoDB)
+            ListadoDB.extend(ListadoElementos)
+            #█═══════════════[ Guardar en Base de Datos ] ══════════════════════════════════█ 
+            # #Guarda la informacion en un archivo CSV 
+            textocsv = convertirlistaacsv(ListadoDB)
+            print("TextoCSV: ")
+            print(textocsv)
             
+            escribirDB(textocsv)
 
         else:
-            print("No se encontraron concidencias.")
-            #█═══════════════[ Unir listas ] ══════════════════════════════════█
-            ListadoDB.extend(ListadoElementos)
+            #──O────────────────O─
+            #Comprar listados en busquedad de concidencias codigo
+            Listacondiencias = comparadorconcidencias(ListadoDB,ListadoElementos,0)
+    #        print(Listacondiencias)
+            #──O────────────────O─
+            #Evaluar
+            if (Listacondiencias != []) :
+                print("Se encontraron condidencias, sobrescribiendo DB.")
 
-        #█═══════════════[ Guardar en Base de Datos ] ══════════════════════════════════█ 
-        # #Guarda la informacion en un archivo CSV 
-        textocsv = convertirlistaacsv(ListadoDB)
-        print("TextoCSV: ")
-        print(textocsv)
-        
-        escribirDB(textocsv)
+                #──O────────────────O─
+                #Sobre escribe los valores repetidos
+                #──O────────────────O─
+                #Nueva lista
+                templist = []
+                for i in range(0,len(ListadoElementos)):
+                    templist.append(ListadoElementos[i])
+                #──O────────────────O─
+                contador = -1
+                for i in range(0,len(Listacondiencias)):
+                    #print("DB: ", ListadoDB[Listacondiencias[i][0]])
+                    #print("E: ", ListadoElementos[Listacondiencias[i][1]])
+                    ListadoDB[Listacondiencias[i][0]] = ListadoElementos[Listacondiencias[i][1]]
+                    #print("DBnew: ", ListadoDB[Listacondiencias[i][0]])
+                    
+                    #──O────────────────O─
+                    #Elimina el elemento repetido
+                    #print("Elemento a eleminar: ", Listacondiencias[i][1] )
+                    contador += 1
+                    if (contador < 1):
+                        templist.pop(Listacondiencias[i][1])
+                    else:
+                        templist.pop(Listacondiencias[i][1] - contador)
+                        
+                    
+                    
+                    
+                    
+
+                #█═══════════════[ Unir listas ] ══════════════════════════════════█ 
+                #Unir listas
+                ListadoDB.extend(templist)
+                
+
+            else:
+                print("No se encontraron concidencias.")
+                #█═══════════════[ Unir listas ] ══════════════════════════════════█
+                ListadoDB.extend(ListadoElementos)
+
+            #█═══════════════[ Guardar en Base de Datos ] ══════════════════════════════════█ 
+            # #Guarda la informacion en un archivo CSV 
+            textocsv = convertirlistaacsv(ListadoDB)
+            print("TextoCSV: ")
+            print(textocsv)
+            
+            escribirDB(textocsv)
 
         
     except Exception as e:
         VNT0.Mostrar("Error [CRUD]: Ocurrio un error en la carga masiva. \n"+e)
+
+#————————————————————»✦«—————————————————————————————————————————————————#
+def borrartodoDB():
+    try:
+        print("Borrando  DB....")
+        #──O────────────────O─
+        #Buscar ruta del fichero
+        Ruta = pathlib.Path(__file__).parent.absolute()
+        txtRuta = str(Ruta)
+        txtRutaDB = txtRuta + "\LFP_DB.csv"
+        #──O────────────────O─
+        #Abrir el archivo
+        archivocsv = open(txtRutaDB, "w", encoding="utf-8")
+        #──O────────────────O─
+        #Guardar
+        archivocsv.write("")
+        return True
+    except Exception as e:
+        print(e)
+        return False
 
 #————————————————————»✦«—————————————————————————————————————————————————#
 def escribirDB(textonuevo):
