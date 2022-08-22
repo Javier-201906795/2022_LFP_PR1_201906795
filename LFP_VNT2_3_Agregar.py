@@ -155,4 +155,6 @@ def Agregar():
         #█═══════════════[ CRUD GUARDAR ] ═════════════════════════════════█
         if (sonnumeros == True):
             CRUD2.agregarcurso(ListaCurso)
+            VNT0.Mostrar("Se agregro el curso correctamento de LFP_DB.csv")
+            Cerrar()
     

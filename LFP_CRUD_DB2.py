@@ -12,9 +12,7 @@ import LFP_CRUD_DB as CRUD
 #————————————————————»✦«—————————————————————————————————————————————————#
 def agregarcurso(ListaCurso):
     print("Agregando Curso.... ")
-    # #█═══════════════[ obtener lista DB ] ══════════════════════════════════█
-    # ListadoDB = CRUD.leerdb()
-    # print(ListadoDB)
+    
     #█═══════════════[ Convertir a CSV ] ══════════════════════════════════█ 
     print(ListaCurso)
     textoDB = obtenretextoDB()
@@ -66,3 +64,31 @@ def textoacsv(Lista):
 
     except Exception as e:
         print(e)
+
+#————————————————————»✦«—————————————————————————————————————————————————#
+def Bbuscar(codigo):
+    try:
+        #█═══════════════[ obtener lista DB ] ══════════════════════════════════█
+        ListadoDB = CRUD.leerdb()
+        print(ListadoDB)
+        print(len(ListadoDB))
+        print("Codigo a buscar: ", codigo)
+        #█═══════════════[ Buscar si existe el codigo ] ══════════════════════════════════█
+        encontrado = False
+        posicion = -1
+        for i in range(0,len(ListadoDB)):
+            print(int(ListadoDB[i][0]))
+            #Evaluar
+            if (int(ListadoDB[i][0]) == int(codigo)):
+                print("Encontrado.")
+                encontrado = True
+                posicion = i + 1
+            
+        if (encontrado == True):
+            return posicion
+        else:
+            return False
+
+    except Exception as e:
+        print(e)
+        return False

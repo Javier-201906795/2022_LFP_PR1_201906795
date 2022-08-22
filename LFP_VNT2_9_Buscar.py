@@ -7,6 +7,7 @@ from tkinter import filedialog
 #INTERFACES GRAFICAS VENTANAS
 import LFP_VNT0_Errores as VNT0
 import LFP_VNT2_2_Editar as VNT2_2
+import LFP_CRUD_DB2 as CRUD2
 
 #█┼┼┼┼┼┼┼┼┼┼┼[ VARIABLES GLOBALES ]┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼█
 #──O────────────────O───────────
@@ -61,7 +62,6 @@ def Mostrar(_Accion):
     
 #————————————————————»✦«—————————————————————————————————————————————————#
 def Cerrar():
-    print("cerrar ventan buscar")
     global VNTAbierta
     VNTAbierta = False
     ventana.destroy()
@@ -139,20 +139,26 @@ def Buscar():
             VNT0.Mostrar(mensajeerror)
 
     #█═══════════════[ Buscar Curso ] ═════════════════════════════════█
-    global cursoexiste
-    cursoexiste = False
     print("buscando curso ", codigocurso)
-    cursoexiste = True
+    global ubicacionitem
+    ubicacionitem = False
+    ubicacionitem = CRUD2.Bbuscar(codigocurso)
+    print("ubicacion1: ", ubicacionitem)
+
+    if (ubicacionitem == False):
+        VNT0.Mostrar("No se encontro el codigo a buscar.")
+    
+    
 
     #█═══════════════[ Ejecutar Accion ] ═════════════════════════════════█
     #print("Accion", Accion)
-    if (espaciosVacios == False and codigocorrecto == True and cursoexiste == True):
+    if (espaciosVacios == False and codigocorrecto == True and ubicacionitem != False):
         if (Accion == "EDITAR"):
-            AccEditar(codigocurso)
+            AccEditar(ubicacionitem)
         elif (Accion == "ELIMINAR"):
-            AccEliminar(codigocurso)
+            AccEliminar(ubicacionitem)
         else:
-            mensaje("Porblemas al buscar coloque una accion valida")
+            mensaje("Problemas al buscar coloque una accion valida")
             VNT0.Mostrar(mensaje)
 
 #————————————————————»✦«—————————————————————————————————————————————————#

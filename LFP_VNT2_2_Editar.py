@@ -6,6 +6,8 @@ from tkinter import filedialog
 #──O────────────────O────────
 #INTERFACES GRAFICAS VENTANAS
 import LFP_VNT0_Errores as VNT0
+import LFP_CRUD_DB as CRUD
+import LFP_CRUD_DB2 as CRUD2
 
 #█┼┼┼┼┼┼┼┼┼┼┼[ VARIABLES GLOBALES ]┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼█
 #──O────────────────O───────────
@@ -23,6 +25,7 @@ def test():
         print("vacio")
 #————————————————————»✦«—————————————————————————————————————————————————#
 def Mostrar(_codigo):
+    _codigo -= 1 
     print("CODIGO A EDITAR: ",_codigo)
     #──O────────────────O────────────────────
     #Declar variable global para poder usarla
@@ -54,14 +57,17 @@ def Mostrar(_codigo):
         vcreditos = tk.StringVar()
         vestados = tk.StringVar()
         #──O────────────────O───
+        #Obtiene Listado 
+        ListadoDB = CRUD.leerdb()
+
         #Colocar valores (Texto)
-        vcodigo.set(_codigo)
-        vnombre.set("Ejemplo")
-        vprerequisito.set("Ejemplo")
-        vsemestre.set("Ejemplo")
-        vopcionalidad.set("Ejemplo")
-        vcreditos.set("Ejemplo")
-        vestados.set("Ejemplo")
+        vcodigo.set(str(ListadoDB[_codigo][0]))
+        vnombre.set(str(ListadoDB[_codigo][1]))
+        vprerequisito.set(str(ListadoDB[_codigo][2]))
+        vsemestre.set(str(ListadoDB[_codigo][3]))
+        vopcionalidad.set(str(ListadoDB[_codigo][4]))
+        vcreditos.set(str(ListadoDB[_codigo][5]))
+        vestados.set(str(ListadoDB[_codigo][6]))
         #──O────────────────O───
         global entrycodigo
         entrycodigo = tk.Entry(ventana, textvariable=vcodigo).place(x=150, y=50)
@@ -141,8 +147,31 @@ def Editar():
     
 
     #█═══════════════[ Evaluar Inputs ] ═════════════════════════════════█
-
-    #█═══════════════[ Imprimir Inputs ] ═════════════════════════════════█
-    
+        #Evaluar si es un numero
+        sonnumeros = True
+        try:
+            mensaje = ""
+            for i in range(0,len(ListaInputs)):
+                if ( i == 1 or i==2):
+                    None
+                else:
+                    try:
+                        numero = int(ListaInputs[i])
+                    except Exception as e:
+                        mensaje += str(ListaInputsNombres[i]) + ", "
+            
+            if (mensaje != ""):
+                mensaje = "Error por favor agrege un valor numerico en: " + mensaje
+                VNT0.Mostrar(mensaje)
+                sonnumeros = False
+        except Exception as e:
+            VNT0.Mostrar("error " + e)
+        #█═══════════════[ Listar Inputs ] ═════════════════════════════════█
+        ListaCurso = [tcodigo, tnombre,tprerequisito,tsemestre,topcionalidad,tcreditos,testados]
+        #█═══════════════[ CRUD GUARDAR ] ═════════════════════════════════█
+        if (sonnumeros == True):
+            CRUD2.agregarcurso(ListaCurso)
+            VNT0.Mostrar("Se edito el curso correctamento de LFP_DB.csv")
+            Cerrar()
     
     
