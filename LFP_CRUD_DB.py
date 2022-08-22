@@ -1,5 +1,6 @@
 #█┼┼┼┼┼┼┼┼┼┼┼[ IMPORTACIONES ]┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼█
 import pathlib
+import re
 import LFP_VNT0_Errores as VNT0
 
 
@@ -26,11 +27,59 @@ def cargamasiva(listaElementos):
         Listacondiencias = comparadorconcidencias(ListadoDB,ListadoElementos,0)
 #        print(Listacondiencias)
         #──O────────────────O─
-        #sobre escribe los valores repetidos
+        #Evaluar
+        if (Listacondiencias != []) :
+            print("Se encontraron condidencias, sobrescribiendo DB.")
 
+            #──O────────────────O─
+            #Sobre escribe los valores repetidos
+            #──O────────────────O─
+            #Nueva lista
+            templist = []
+            for i in range(0,len(ListadoElementos)):
+                templist.append(ListadoElementos[i])
+            #──O────────────────O─
+            contador = -1
+            for i in range(0,len(Listacondiencias)):
+                #print("DB: ", ListadoDB[Listacondiencias[i][0]])
+                #print("E: ", ListadoElementos[Listacondiencias[i][1]])
+                ListadoDB[Listacondiencias[i][0]] = ListadoElementos[Listacondiencias[i][1]]
+                #print("DBnew: ", ListadoDB[Listacondiencias[i][0]])
+                
+                #──O────────────────O─
+                #Elimina el elemento repetido
+                #print("Elemento a eleminar: ", Listacondiencias[i][1] )
+                contador += 1
+                if (contador < 1):
+                    templist.pop(Listacondiencias[i][1])
+                else:
+                    templist.pop(Listacondiencias[i][1] - contador)
+                    
+                
+                
+                
+                
+
+            #█═══════════════[ Unir listas ] ══════════════════════════════════█ 
+            #Unir listas
+            # print(ListadoDB)
+            # print("-------")
+            # print(templist)
+            # print("-------")
+            ListadoDB.extend(templist)
+            # print(ListadoDB)
+            
+
+        else:
+            print("No se encontraron concidencias.")
+            #█═══════════════[ Unir listas ] ══════════════════════════════════█
+            ListadoDB.extend(ListadoElementos)
 
         #█═══════════════[ Guardar en Base de Datos ] ══════════════════════════════════█ 
-        #Guarda la informacion en un archivo CSV 
+        # #Guarda la informacion en un archivo CSV 
+        # textocsv = convertirlistaacsv(ListadoDB)
+        # print("TextoCSV: ")
+        # print(textocsv)
 
 
         
@@ -120,3 +169,24 @@ def comparadorconcidencias(lista1,lista2,ini):
         print("Error [CRUD]: Ocurrio un error en comparadorconcidencias. \n"+e)
         return None
     
+#————————————————————»✦«—————————————————————————————————————————————————#
+def convertirlistaacsv(lista):
+    try:
+        #Colocar elementos coma
+        txtnuevo = ""
+        #recorre linea
+        #──O────────────────O─
+        for i in range(0,len(lista)):
+            #recorre subelementos
+            #──O────────────────O─
+            for j in range(0,len(lista[i])):
+                #coloca comas
+                txtnuevo += lista[i][j] + ","
+            #──O────────────────O─
+        #──O────────────────O─
+
+        return txtnuevo
+
+    except Exception as e:
+        print("Error al convertir lista a csv. \n"+e)
+        return ""
