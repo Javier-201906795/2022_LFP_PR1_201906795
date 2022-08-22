@@ -80,12 +80,34 @@ def cargamasiva(listaElementos):
         textocsv = convertirlistaacsv(ListadoDB)
         print("TextoCSV: ")
         print(textocsv)
-
+        
+        escribirDB(textocsv)
 
         
     except Exception as e:
         VNT0.Mostrar("Error [CRUD]: Ocurrio un error en la carga masiva. \n"+e)
 
+#————————————————————»✦«—————————————————————————————————————————————————#
+def escribirDB(textonuevo):
+    try:
+        print("Escribiendo nuevo DB tipo csv.")
+        #──O────────────────O─
+        #Buscar ruta del fichero
+        Ruta = pathlib.Path(__file__).parent.absolute()
+        txtRuta = str(Ruta)
+        txtRutaDB = txtRuta + "\LFP_DB.csv"
+        #──O────────────────O─
+        #Abrir el archivo
+        archivocsv = open(txtRutaDB, "w", encoding="utf-8")
+        #──O────────────────O─
+        #Guardar
+        archivocsv.write(textonuevo)
+        # CERRAR ARCHIVO
+        archivocsv.close()
+        print("DB escrito correctamente.")
+
+    except Exception as e:
+        print("Erorr al guardar DB. \n"+e)
 #————————————————————»✦«—————————————————————————————————————————————————#
 def leerdb():
     try:
@@ -102,6 +124,9 @@ def leerdb():
         #Leer archivo csv
         #crea un listado con cada linea 
         listacsv = archivocsv.readlines()
+
+        # CERRAR ARCHIVO
+        archivocsv.close()
         #──O────────────────O─
         #quitar saltos de lineas
         for i in range(0,len(listacsv)):
